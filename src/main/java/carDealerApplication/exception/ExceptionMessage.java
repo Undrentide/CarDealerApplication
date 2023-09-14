@@ -15,10 +15,4 @@ public class ExceptionMessage {
     public ExceptionMessage() {
         timestamp = LocalDateTime.now();
     }
-
-    public ExceptionMessage(String message, String path) {
-        this();
-        this.message = message;
-        this.path = path;
-    }
 }
