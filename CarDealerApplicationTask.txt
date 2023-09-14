@@ -1,0 +1,83 @@
+Implement a Car Dealer application.
+
+APIs to implement:
+1. Catalog for Customers
+2. Sales tools for Consultants
+3. Administration tools for Administrators
+
+========= Requirements =========
+
+--------- Domain model -----------
+Customer - NOT AN ENTITY. Does not require any registration/sign-in.
+Customer == Any website guests. Customer is any browser User that opened a web-page.
+
+- Location information (unmodifiable, pre-defined)
+	- Country
+	- City
+	- Street
+
+- Dealer centre:
+	- Location information
+	- Opened/Closed
+	- Working hours (from - to)
+	- Attached Consultants
+	- Attached Administrator 
+		=== Note === 
+		Each Dealer Centre can only have a single Administrator, 
+		however an Administrator can be attached to a multiple Dealer Centres.
+
+- Manufacturer:
+	- Name
+	- Country
+	- Origination year
+
+- Car:
+	- Engine specifications in format "key-value", json
+	- Colour
+	- Brand name
+	- Manufacturer Country
+	- Sellable Countries (names)
+	- Price
+
+- Special Offer
+	- Sellable Countries (names)
+	- Discount amount (percentage, natural numbers only)
+	- Description
+
+- Consultant:
+	- First name
+	- Last name
+	- Phone number
+	- Interest rate (percentage, fractional numbers)
+	- Focused Manufacturer 
+		=== Note ===
+		Each Consultant can have only a single Focused Manufacturer.
+
+- Administrator:
+	- First name
+	- Last name
+	- Phone number
+	- Dealer centre 
+
+------------- Functionality (API) ---------------
+
+1. Catalog API for any visitor:
+	- Get available (in production) Cars (should be optimized, do not load everything at once)
+	- Get Lending information
+	- Get Legal information
+	- Get list of Dealer Centers for specified Country or City (only opened)
+
+2. Consultant API (paginated):
+	- View available (in production) cars list
+	- View unavailable (out of production) cars list
+	- View list of all Dealer Centers for specified Country or City (both closed and opened)
+	- View list of Special Offers for specified Country
+
+3. Administration API (paginated):
+	- CRUD Car
+	- CRUD Dealer Centre
+	- CRUD Manufacturer
+	- CRUD Consultant
+	- CRUD Administrator
+	- CRUD Special offer
+	- CRUD Location information
