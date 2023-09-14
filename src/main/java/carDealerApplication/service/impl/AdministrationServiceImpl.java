@@ -2,7 +2,6 @@ package carDealerApplication.service.impl;
 
 import carDealerApplication.dal.AdministratorRepository;
 import carDealerApplication.entity.Administrator;
-import carDealerApplication.exception.UserNotFoundException;
 import carDealerApplication.service.AdministratorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,16 +31,5 @@ public class AdministrationServiceImpl implements AdministratorService {
     @Override
     public void deleteEntityById(Long administratorId) {
         administratorRepository.deleteById(administratorId);
-    }
-
-    @Override
-    public Administrator getAdministratorLoginAndPassword(String login, String password) throws UserNotFoundException {
-        Administrator administratorHolder = new Administrator();
-        for (Administrator administrator : administratorRepository.findAll()) {
-            if (login.equals(administrator.getLogin()) && password.equals(administrator.getPassword())) {
-                administratorHolder = administrator;
-            }
-        }
-        return administratorHolder;
     }
 }
