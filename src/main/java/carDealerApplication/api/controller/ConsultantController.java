@@ -32,12 +32,12 @@ public class ConsultantController {
         return carService.fetchUnavailableCar();
     }
 
-    @GetMapping("all_dealers/{country}")
+    @GetMapping("all_dealers/country/{country}")
     public List<DealerCenter> fetchAllDealersByCountry(@PathVariable("country") String country) {
         return dealerCenterService.fetchAllDealersByCountry(country);
     }
 
-    @GetMapping("all_dealers/{city}")
+    @GetMapping("all_dealers/city/{city}")
     public List<DealerCenter> fetchAllDealersByCity(@PathVariable("city") String city) {
         return dealerCenterService.fetchAllDealersByCity(city);
     }

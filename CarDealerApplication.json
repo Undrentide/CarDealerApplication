@@ -1,0 +1,873 @@
+{
+	"info": {
+		"_postman_id": "eef791c5-c1e7-4423-be5f-becbfd8fc82e",
+		"name": "CarDealerApplication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2930092"
+	},
+	"item": [
+		{
+			"name": "Customer (Guest)",
+			"item": [
+				{
+					"name": "Available Car List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/dealer_center/car",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dealer_center",
+								"car"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Legal Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/dealer_center/legal_info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dealer_center",
+								"legal_info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lending Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/dealer_center/lending_info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dealer_center",
+								"lending_info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dealer Center for specified Country",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/dealer_center/find_my_dealer/country/Japan",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dealer_center",
+								"find_my_dealer",
+								"country",
+								"Japan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dealer Center for specified City",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/dealer_center/find_my_dealer/city/Wakkanai",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dealer_center",
+								"find_my_dealer",
+								"city",
+								"Wakkanai"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Consultant",
+			"item": [
+				{
+					"name": "Consultant login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"firstcons\",\r\n    \"password\": \"conspass1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login/consultant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login",
+								"consultant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Available Car List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGFkbWluIiwiaWF0IjoxNjk0NzE5ODAzfQ.hXWf3hBsZzUalSnSlLEPOS0-Q_o1vdyhjnGALbv7LPc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/consultant/available_car",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consultant",
+								"available_car"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unavailable Car List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/consultant/unavailable_car",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consultant",
+								"unavailable_car"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Dealer Centers for specified Country",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/consultant/all_dealers/country/Japan",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consultant",
+								"all_dealers",
+								"country",
+								"Japan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dealer Centers for specified City",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/consultant/all_dealers/city/Wakkanai",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consultant",
+								"all_dealers",
+								"city",
+								"Wakkanai"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Special Offers for specified Country",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/consultant/special_offer/Japan",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consultant",
+								"special_offer",
+								"Japan"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Administrator",
+			"item": [
+				{
+					"name": "READ",
+					"item": [
+						{
+							"name": "Car List",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/administrator/car",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"car"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Dealer Center List",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/administrator/dealer_center",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"dealer_center"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Manufacturer List",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/administrator/manufacturer",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"manufacturer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultant List",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/administrator/consultant",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"consultant"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Administrator List",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/administrator/administrator",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"administrator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Special Offer List",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/administrator/special_offer",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"special_offer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Location List",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/administrator/location",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"location"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UPSERT",
+					"item": [
+						{
+							"name": "Car",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"engine\": {\r\n        \"Engine type\": \"Some type\"\r\n    },\r\n    \"color\": \"Some color\",\r\n    \"brand\": \"Some brand\",\r\n    \"country\": \"Some country\",\r\n    \"price\": 1,\r\n    \"available\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/administrator/car",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"car"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Dealer Center",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"location\": {\r\n        \"id\": 1\r\n    },\r\n    \"hours\": \"00.00 - 23.59\",\r\n    \"consultantList\": [\r\n        {\r\n            \"id\": 1\r\n        }\r\n    ],\r\n    \"carList\": [\r\n        {\r\n            \"id\": 5\r\n        }\r\n    ],\r\n    \"open\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/administrator/dealer_center",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"dealer_center"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Manufacturer",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Some name\",\r\n    \"country\": \"Some country\",\r\n    \"origination\": 2023\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/administrator/manufacturer",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"manufacturer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultant",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Consultant\",\r\n    \"lastName\": \"Eleventh\",\r\n    \"phone\": 999999,\r\n    \"login\": \"eleventhcons\",\r\n    \"password\": \"conspass1\",\r\n    \"rate\": 100.0,\r\n    \"manufacturer\": {\r\n        \"id\": 1\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/administrator/consultant",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"consultant"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Administrator",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Admin\",\r\n    \"lastName\": \"Third\",\r\n    \"phone\": 666666,\r\n    \"login\": \"thirdadmin\",\r\n    \"password\": \"adminpass1\",\r\n    \"dealerCenterList\": [\r\n        {\r\n            \"id\": 1\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/administrator/administrator",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"administrator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Special Offer",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"countries\": [\r\n        {\r\n            \"id\": 5\r\n        }\r\n    ],\r\n    \"amount\": 99,\r\n    \"description\": \"Some description\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/administrator/special_offer",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"special_offer"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "Car",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/administrator/car/delete/302",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"car",
+										"delete",
+										"302"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Dealer Center",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/administrator/dealer_center/delete/302",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"dealer_center",
+										"delete",
+										"302"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Manufacturer",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/administrator/manufacturer/delete/302",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"manufacturer",
+										"delete",
+										"302"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultant",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/administrator/consultant/delete/302",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"consultant",
+										"delete",
+										"302"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Administrator",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/administrator/administrator/delete/302",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"administrator",
+										"delete",
+										"302"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Special Offer",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/administrator/special_offer/delete/302",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"administrator",
+										"special_offer",
+										"delete",
+										"302"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Administrator login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"firstadmin\",\r\n    \"password\": \"adminpass1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login/administrator",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login",
+								"administrator"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
