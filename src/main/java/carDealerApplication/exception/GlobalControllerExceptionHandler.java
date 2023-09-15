@@ -1,39 +1,60 @@
 package carDealerApplication.exception;
 
-import jakarta.persistence.EntityNotFoundException;
+import io.jsonwebtoken.MalformedJwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.rmi.ServerException;
+
 @Slf4j
 @RestControllerAdvice
 public class GlobalControllerExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler({NoSuchElementFoundException.class, EmptyResultDataAccessException.class, IllegalStateException.class, EntityNotFoundException.class})
-    ErrorResponse nullResult(Exception exception) {
-        log.error(exception.getMessage(), exception);
-        return ErrorResponse.builder(exception, HttpStatusCode.valueOf(404), "Wrong ID, maboy, this thing doesn't exist :C").build();
-    }
-
     @ExceptionHandler(Exception.class)
-    protected ResponseEntity<Object> handleUnexpectedException(Exception ex,
-                                                               WebRequest request) {
-
+    protected ResponseEntity<Object> handleUnexpectedException(Exception ex, WebRequest request) {
         log.error(ex.getMessage(), ex);
         return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
-    @ExceptionHandler(value = {InvalidJwtException.class})
-    protected ResponseEntity<Object> handleEntityNotFoundException(InvalidJwtException ex, WebRequest request) {
+    @ExceptionHandler(value = {NoSuchElementFoundException.class})
+    protected ResponseEntity<Object> handleNoSuchElementFoundException(NoSuchElementFoundException e, WebRequest request) {
+        log.debug(e.getMessage(), e);
+        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
 
-        log.debug(ex.getMessage(), ex);
-        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    @ExceptionHandler(value = {MalformedJwtException.class})
+    protected ResponseEntity<Object> handleUglyEnteredJwtTokenException(MalformedJwtException e, WebRequest request) {
+        log.debug(e.getMessage(), e);
+        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.CONFLICT, request);
+    }
+
+    @ExceptionHandler(value = {EmptyResultDataAccessException.class})
+    protected ResponseEntity<Object> handleAnotherNoSuchElementFoundException(EmptyResultDataAccessException e, WebRequest request) {
+        log.debug(e.getMessage(), e);
+        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler(value = {InvalidJwtException.class})
+    protected ResponseEntity<Object> handleEntityNotFoundException(InvalidJwtException e, WebRequest request) {
+        log.debug(e.getMessage(), e);
+        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
+    }
+
+    @ExceptionHandler(value = {UserNotFoundException.class})
+    protected ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException e, WebRequest request) {
+        log.debug(e.getMessage(), e);
+        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler(value = {ServerException.class})
+    protected ResponseEntity<Object> handleServletException(ServerException e, WebRequest request) {
+        log.debug(e.getMessage(), e);
+        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
     }
 }

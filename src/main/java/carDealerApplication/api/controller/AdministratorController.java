@@ -1,5 +1,7 @@
 package carDealerApplication.api.controller;
 
+import carDealerApplication.api.dto.AdministratorDTO;
+import carDealerApplication.api.dto.ConsultantDTO;
 import carDealerApplication.entity.*;
 import carDealerApplication.service.*;
 import lombok.RequiredArgsConstructor;
@@ -35,12 +37,12 @@ public class AdministratorController {
     }
 
     @GetMapping("consultant")
-    public List<Consultant> fetchConsultantList() {
+    public List<ConsultantDTO> fetchConsultantList() {
         return consultantService.fetchEntityList();
     }
 
     @GetMapping("administrator")
-    public List<Administrator> fetchAdministratorList() {
+    public List<AdministratorDTO> fetchAdministratorList() {
         return administratorService.fetchEntityList();
     }
 
@@ -70,13 +72,13 @@ public class AdministratorController {
     }
 
     @PutMapping("consultant")
-    public void upsertConsultant(@RequestBody Consultant consultant) {
-        consultantService.upsertEntity(consultant);
+    public void upsertConsultant(@RequestBody ConsultantDTO consultantDTO) {
+        consultantService.upsertEntity(consultantDTO);
     }
 
     @PutMapping("administrator")
-    public void upsertAdministrator(@RequestBody Administrator administrator) {
-        administratorService.upsertEntity(administrator);
+    public void upsertAdministrator(@RequestBody AdministratorDTO administratorDTO) {
+        administratorService.upsertEntity(administratorDTO);
     }
 
     @PutMapping("special_offer")

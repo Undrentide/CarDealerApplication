@@ -1,7 +1,11 @@
 package carDealerApplication.api.controller;
 
-import carDealerApplication.entity.Administrator;
-import carDealerApplication.entity.Consultant;
+import carDealerApplication.api.dto.AdministratorDTO;
+import carDealerApplication.api.dto.ConsultantDTO;
+import carDealerApplication.service.AdministratorService;
+import carDealerApplication.service.ConsultantService;
+import carDealerApplication.service.dtoConverter.AdministratorDTOConverter;
+import carDealerApplication.service.dtoConverter.ConsultantDTOConverter;
 import carDealerApplication.service.jwtGenerator.AdministratorJwtGenerator;
 import carDealerApplication.service.jwtGenerator.ConsultantJwtGenerator;
 import lombok.RequiredArgsConstructor;
@@ -16,16 +20,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("login")
 public class LoginController {
+    private final ConsultantService consultantService;
+    private final AdministratorService administratorService;
     private final ConsultantJwtGenerator consultantJwtGenerator;
     private final AdministratorJwtGenerator administratorJwtGenerator;
+    private final ConsultantDTOConverter consultantDTOConverter;
+    private final AdministratorDTOConverter administratorDTOConverter;
 
     @PostMapping("consultant")
-    public ResponseEntity<?> loginConsultant(@RequestBody Consultant consultant) {
-        return new ResponseEntity<>(consultantJwtGenerator.entityJwtGenerateToken(consultant), HttpStatus.OK);
+    public ResponseEntity<?> loginConsultant(@RequestBody ConsultantDTO consultantDTO) {
+        return new ResponseEntity<>(consultantJwtGenerator.entityJwtGenerateToken(consultantDTOConverter.convertToEntity(consultantService.authenticate(consultantDTO))), HttpStatus.OK);
     }
 
     @PostMapping("administrator")
-    public ResponseEntity<?> loginAdministrator(@RequestBody Administrator administrator) {
-        return new ResponseEntity<>(administratorJwtGenerator.entityJwtGenerateToken(administrator), HttpStatus.OK);
+    public ResponseEntity<?> loginAdministrator(@RequestBody AdministratorDTO administratorDTO) {
+        return new ResponseEntity<>(administratorJwtGenerator.entityJwtGenerateToken(administratorDTOConverter.convertToEntity(administratorService.authenticate(administratorDTO))), HttpStatus.OK);
     }
 }

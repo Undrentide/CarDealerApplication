@@ -1,6 +1,7 @@
 package carDealerApplication.service;
 
-import carDealerApplication.entity.Consultant;
+import carDealerApplication.api.dto.ConsultantDTO;
 
-public interface ConsultantService extends EntityService<Consultant, Long> {
+public interface ConsultantService extends EntityService<ConsultantDTO, Long> {
+    ConsultantDTO authenticate(ConsultantDTO consultantDTO);
 }
