@@ -20,6 +20,6 @@ public class SpecialOffer extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "location_id")
     )
     private List<Location> countries;
-    private int amount;
+    private Integer amount;
     private String description;
 }

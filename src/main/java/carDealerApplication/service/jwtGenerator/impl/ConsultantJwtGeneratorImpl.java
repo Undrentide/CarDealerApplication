@@ -16,6 +16,7 @@ public class ConsultantJwtGeneratorImpl implements ConsultantJwtGenerator {
 
     @Override
     public String entityJwtGenerateToken(Consultant consultant) {
-        return Jwts.builder().setSubject(consultant.getLogin()).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, secret).compact();
+        return Jwts.builder().setSubject(consultant.getLogin()).setIssuedAt(new Date())
+                .signWith(SignatureAlgorithm.HS256, secret).compact();
     }
 }

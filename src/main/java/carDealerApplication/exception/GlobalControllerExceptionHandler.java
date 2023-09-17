@@ -1,6 +1,5 @@
 package carDealerApplication.exception;
 
-import io.jsonwebtoken.MalformedJwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
@@ -19,31 +18,28 @@ public class GlobalControllerExceptionHandler extends ResponseEntityExceptionHan
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<Object> handleUnexpectedException(Exception ex, WebRequest request) {
         log.error(ex.getMessage(), ex);
-        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(),
+                HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
     @ExceptionHandler(value = {NoSuchElementFoundException.class})
-    protected ResponseEntity<Object> handleNoSuchElementFoundException(NoSuchElementFoundException e, WebRequest request) {
+    protected ResponseEntity<Object> handleNoSuchElementFoundException(NoSuchElementFoundException e,
+                                                                       WebRequest request) {
         log.debug(e.getMessage(), e);
         return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
-    @ExceptionHandler(value = {MalformedJwtException.class})
-    protected ResponseEntity<Object> handleUglyEnteredJwtTokenException(MalformedJwtException e, WebRequest request) {
-        log.debug(e.getMessage(), e);
-        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.CONFLICT, request);
-    }
-
     @ExceptionHandler(value = {EmptyResultDataAccessException.class})
-    protected ResponseEntity<Object> handleAnotherNoSuchElementFoundException(EmptyResultDataAccessException e, WebRequest request) {
+    protected ResponseEntity<Object> handleAnotherNoSuchElementFoundException(EmptyResultDataAccessException e,
+                                                                              WebRequest request) {
         log.debug(e.getMessage(), e);
         return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
     @ExceptionHandler(value = {InvalidJwtException.class})
-    protected ResponseEntity<Object> handleEntityNotFoundException(InvalidJwtException e, WebRequest request) {
+    protected ResponseEntity<Object> handleInvalidJwtException(InvalidJwtException e, WebRequest request) {
         log.debug(e.getMessage(), e);
-        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
+        return handleExceptionInternal(e, "Invalid JWT.", new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
     }
 
     @ExceptionHandler(value = {UserNotFoundException.class})

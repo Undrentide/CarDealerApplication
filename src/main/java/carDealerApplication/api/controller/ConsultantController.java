@@ -6,11 +6,10 @@ import carDealerApplication.entity.SpecialOffer;
 import carDealerApplication.service.CarService;
 import carDealerApplication.service.DealerCenterService;
 import carDealerApplication.service.SpecialOfferService;
+import carDealerApplication.util.JwtHandlerUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,29 +20,38 @@ public class ConsultantController {
     private final CarService carService;
     private final DealerCenterService dealerCenterService;
     private final SpecialOfferService specialOfferService;
+    private final JwtHandlerUtil jwtHandlerUtil;
 
     @GetMapping("available_car")
-    public List<Car> fetchAvailableCarList() {
+    public List<Car> fetchAvailableCarList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+        jwtHandlerUtil.validateJwt(jwtToken);
         return carService.fetchAvailableCar();
     }
 
     @GetMapping("unavailable_car")
-    public List<Car> fetchUnavailableCarList() {
+    public List<Car> fetchUnavailableCarList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+        jwtHandlerUtil.validateJwt(jwtToken);
         return carService.fetchUnavailableCar();
     }
 
     @GetMapping("all_dealers/country/{country}")
-    public List<DealerCenter> fetchAllDealersByCountry(@PathVariable("country") String country) {
+    public List<DealerCenter> fetchAllDealersByCountry(@PathVariable("country") String country,
+                                                       @RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+        jwtHandlerUtil.validateJwt(jwtToken);
         return dealerCenterService.fetchAllDealersByCountry(country);
     }
 
     @GetMapping("all_dealers/city/{city}")
-    public List<DealerCenter> fetchAllDealersByCity(@PathVariable("city") String city) {
+    public List<DealerCenter> fetchAllDealersByCity(@PathVariable("city") String city,
+                                                    @RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+        jwtHandlerUtil.validateJwt(jwtToken);
         return dealerCenterService.fetchAllDealersByCity(city);
     }
 
     @GetMapping("special_offer/{country}")
-    public List<SpecialOffer> fetchSpecialOffersByCountry(@PathVariable("country") String country) {
+    public List<SpecialOffer> fetchSpecialOffersByCountry(@PathVariable("country") String country,
+                                                          @RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+        jwtHandlerUtil.validateJwt(jwtToken);
         return specialOfferService.fetchSpecialOfferByCountry(country);
     }
 }

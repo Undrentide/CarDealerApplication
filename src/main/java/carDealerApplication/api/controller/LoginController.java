@@ -29,11 +29,13 @@ public class LoginController {
 
     @PostMapping("consultant")
     public ResponseEntity<?> loginConsultant(@RequestBody ConsultantDTO consultantDTO) {
-        return new ResponseEntity<>(consultantJwtGenerator.entityJwtGenerateToken(consultantDTOConverter.convertToEntity(consultantService.authenticate(consultantDTO))), HttpStatus.OK);
+        return new ResponseEntity<>(consultantJwtGenerator.entityJwtGenerateToken(consultantDTOConverter
+                .convertToEntity(consultantService.authenticate(consultantDTO))), HttpStatus.OK);
     }
 
     @PostMapping("administrator")
     public ResponseEntity<?> loginAdministrator(@RequestBody AdministratorDTO administratorDTO) {
-        return new ResponseEntity<>(administratorJwtGenerator.entityJwtGenerateToken(administratorDTOConverter.convertToEntity(administratorService.authenticate(administratorDTO))), HttpStatus.OK);
+        return new ResponseEntity<>(administratorJwtGenerator.entityJwtGenerateToken(administratorDTOConverter
+                .convertToEntity(administratorService.authenticate(administratorDTO))), HttpStatus.OK);
     }
 }

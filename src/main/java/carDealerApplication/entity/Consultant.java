@@ -18,10 +18,10 @@ public class Consultant extends AbstractEntity {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    private long phone;
+    private Long phone;
     private String login;
     private String password;
-    private double rate;
+    private Double rate;
     @OneToOne
     private Manufacturer manufacturer;
 }

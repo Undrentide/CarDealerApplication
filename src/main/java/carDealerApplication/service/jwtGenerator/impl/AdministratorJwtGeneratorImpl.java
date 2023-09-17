@@ -16,6 +16,7 @@ public class AdministratorJwtGeneratorImpl implements AdministratorJwtGenerator 
 
     @Override
     public String entityJwtGenerateToken(Administrator administrator) {
-        return Jwts.builder().setSubject(administrator.getLogin()).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, secret).compact();
+        return Jwts.builder().setSubject(administrator.getLogin()).setIssuedAt(new Date())
+                .signWith(SignatureAlgorithm.HS256, secret).compact();
     }
 }
