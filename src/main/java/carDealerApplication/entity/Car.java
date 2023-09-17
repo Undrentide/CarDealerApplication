@@ -1,7 +1,6 @@
 package carDealerApplication.entity;
 
 import carDealerApplication.util.JpaConverterJson;
-import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
