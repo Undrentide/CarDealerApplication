@@ -24,34 +24,34 @@ public class ConsultantController {
 
     @GetMapping("available_car")
     public List<Car> fetchAvailableCarList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
-        jwtHandlerUtil.validateJwt(jwtToken);
+        jwtHandlerUtil.validateJwtForConsultant(jwtToken);
         return carService.fetchAvailableCar();
     }
 
     @GetMapping("unavailable_car")
     public List<Car> fetchUnavailableCarList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
-        jwtHandlerUtil.validateJwt(jwtToken);
+        jwtHandlerUtil.validateJwtForConsultant(jwtToken);
         return carService.fetchUnavailableCar();
     }
 
     @GetMapping("all_dealers/country/{country}")
     public List<DealerCenter> fetchAllDealersByCountry(@PathVariable("country") String country,
                                                        @RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
-        jwtHandlerUtil.validateJwt(jwtToken);
+        jwtHandlerUtil.validateJwtForConsultant(jwtToken);
         return dealerCenterService.fetchAllDealersByCountry(country);
     }
 
     @GetMapping("all_dealers/city/{city}")
     public List<DealerCenter> fetchAllDealersByCity(@PathVariable("city") String city,
                                                     @RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
-        jwtHandlerUtil.validateJwt(jwtToken);
+        jwtHandlerUtil.validateJwtForConsultant(jwtToken);
         return dealerCenterService.fetchAllDealersByCity(city);
     }
 
     @GetMapping("special_offer/{country}")
     public List<SpecialOffer> fetchSpecialOffersByCountry(@PathVariable("country") String country,
                                                           @RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
-        jwtHandlerUtil.validateJwt(jwtToken);
+        jwtHandlerUtil.validateJwtForConsultant(jwtToken);
         return specialOfferService.fetchSpecialOfferByCountry(country);
     }
 }

@@ -6,8 +6,7 @@ import carDealerApplication.service.AdministratorService;
 import carDealerApplication.service.ConsultantService;
 import carDealerApplication.service.dtoConverter.AdministratorDTOConverter;
 import carDealerApplication.service.dtoConverter.ConsultantDTOConverter;
-import carDealerApplication.service.jwtGenerator.AdministratorJwtGenerator;
-import carDealerApplication.service.jwtGenerator.ConsultantJwtGenerator;
+import carDealerApplication.service.UserJwtGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,20 +21,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
     private final ConsultantService consultantService;
     private final AdministratorService administratorService;
-    private final ConsultantJwtGenerator consultantJwtGenerator;
-    private final AdministratorJwtGenerator administratorJwtGenerator;
+    private final UserJwtGenerator userJwtGenerator;
     private final ConsultantDTOConverter consultantDTOConverter;
     private final AdministratorDTOConverter administratorDTOConverter;
 
     @PostMapping("consultant")
     public ResponseEntity<?> loginConsultant(@RequestBody ConsultantDTO consultantDTO) {
-        return new ResponseEntity<>(consultantJwtGenerator.entityJwtGenerateToken(consultantDTOConverter
+        return new ResponseEntity<>(userJwtGenerator.userJwtGenerateToken(consultantDTOConverter
                 .convertToEntity(consultantService.authenticate(consultantDTO))), HttpStatus.OK);
     }
 
     @PostMapping("administrator")
     public ResponseEntity<?> loginAdministrator(@RequestBody AdministratorDTO administratorDTO) {
-        return new ResponseEntity<>(administratorJwtGenerator.entityJwtGenerateToken(administratorDTOConverter
+        return new ResponseEntity<>(userJwtGenerator.userJwtGenerateToken(administratorDTOConverter
                 .convertToEntity(administratorService.authenticate(administratorDTO))), HttpStatus.OK);
     }
 }

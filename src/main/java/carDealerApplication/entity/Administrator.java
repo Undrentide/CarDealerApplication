@@ -13,14 +13,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Administrator extends AbstractEntity {
-    @Column(name = "first_name")
-    private String firstName;
-    @Column(name = "last_name")
-    private String lastName;
-    private Long phone;
-    private String login;
-    private String password;
+public class Administrator extends AbstractUserEntity {
     @OneToMany
     @JoinTable(
             name = "administrator_dealer",

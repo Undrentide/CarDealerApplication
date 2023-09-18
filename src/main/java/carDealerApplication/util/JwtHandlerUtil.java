@@ -1,5 +1,7 @@
 package carDealerApplication.util;
 
+import carDealerApplication.dal.AdministratorRepository;
+import carDealerApplication.dal.ConsultantRepository;
 import carDealerApplication.exception.InvalidJwtException;
 import io.jsonwebtoken.*;
 import lombok.Data;
@@ -11,13 +13,28 @@ import org.springframework.stereotype.Component;
 public class JwtHandlerUtil {
     @Value("${jwt.secret}")
     private String secret;
+    private final ConsultantRepository consultantRepository;
+    private final AdministratorRepository administratorRepository;
 
-    public void validateJwt(String jwtToken) {
-        String cleanedUpJwtToken = jwtToken.substring(7);
-        try {
-            Jwts.parser().setSigningKey(secret).parseClaimsJws(cleanedUpJwtToken);
-        } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException | SignatureException e) {
-            throw new InvalidJwtException(e.getMessage());
+    public void validateJwtForConsultant(String jwtToken) {
+        if (jwtToken != null && jwtToken.startsWith("Bearer ")) {
+            if (!consultantRepository.getConsultantByLogin(Jwts.parser().setSigningKey(secret)
+                    .parseClaimsJws(jwtToken.substring(7)).getBody().getSubject()).isPresent()) {
+                throw new InvalidJwtException("Its not consultant`s token.");
+            }
+        } else {
+            throw new InvalidJwtException("JWT token does not begin with Bearer string");
+        }
+    }
+
+    public void validateJwtForAdministrator(String jwtToken) {
+        if (jwtToken != null && jwtToken.startsWith("Bearer ")) {
+            if (!administratorRepository.getAdministratorByLogin(Jwts.parser().setSigningKey(secret)
+                    .parseClaimsJws(jwtToken.substring(7)).getBody().getSubject()).isPresent()) {
+                throw new InvalidJwtException("Its not administrator`s token.");
+            }
+        } else {
+            throw new InvalidJwtException("JWT token does not begin with Bearer string");
         }
     }
 }

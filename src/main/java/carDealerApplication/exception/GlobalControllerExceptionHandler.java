@@ -1,7 +1,7 @@
 package carDealerApplication.exception;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,24 +22,16 @@ public class GlobalControllerExceptionHandler extends ResponseEntityExceptionHan
                 HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
-    @ExceptionHandler(value = {NoSuchElementFoundException.class})
-    protected ResponseEntity<Object> handleNoSuchElementFoundException(NoSuchElementFoundException e,
-                                                                       WebRequest request) {
-        log.debug(e.getMessage(), e);
-        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
-    }
-
-    @ExceptionHandler(value = {EmptyResultDataAccessException.class})
-    protected ResponseEntity<Object> handleAnotherNoSuchElementFoundException(EmptyResultDataAccessException e,
-                                                                              WebRequest request) {
-        log.debug(e.getMessage(), e);
-        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
-    }
-
     @ExceptionHandler(value = {InvalidJwtException.class})
     protected ResponseEntity<Object> handleInvalidJwtException(InvalidJwtException e, WebRequest request) {
         log.debug(e.getMessage(), e);
-        return handleExceptionInternal(e, "Invalid JWT.", new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
+        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
+    }
+
+    @ExceptionHandler(value = {ExpiredJwtException.class})
+    protected ResponseEntity<Object> handleExpiredJwtException(ExpiredJwtException e, WebRequest request) {
+        log.debug(e.getMessage(), e);
+        return handleExceptionInternal(e, "Token expired", new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 
     @ExceptionHandler(value = {UserNotFoundException.class})
