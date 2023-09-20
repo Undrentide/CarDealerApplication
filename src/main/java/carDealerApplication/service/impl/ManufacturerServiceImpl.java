@@ -2,11 +2,13 @@ package carDealerApplication.service.impl;
 
 import carDealerApplication.dal.ManufacturerRepository;
 import carDealerApplication.entity.Manufacturer;
+import carDealerApplication.exception.EntityNotFoundException;
 import carDealerApplication.service.ManufacturerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -21,15 +23,15 @@ public class ManufacturerServiceImpl implements ManufacturerService {
 
     @Override
     public List<Manufacturer> fetchEntityList() {
-        List<Manufacturer> manufacturerList = new ArrayList<>();
-        for (Manufacturer manufacturer : manufacturerRepository.findAll()) {
-            manufacturerList.add(manufacturer);
-        }
-        return manufacturerList;
+        return new ArrayList<>((Collection<? extends Manufacturer>) manufacturerRepository.findAll());
     }
 
     @Override
     public void deleteEntityById(Long manufactureId) {
-        manufacturerRepository.deleteById(manufactureId);
+        if (manufacturerRepository.existsById(manufactureId)) {
+            manufacturerRepository.deleteById(manufactureId);
+        } else {
+            throw new EntityNotFoundException("Manufacturer not found.");
+        }
     }
 }

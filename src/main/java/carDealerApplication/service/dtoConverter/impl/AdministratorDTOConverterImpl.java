@@ -11,15 +11,15 @@ import org.springframework.stereotype.Component;
 public class AdministratorDTOConverterImpl implements AdministratorDTOConverter {
     @Override
     public AdministratorDTO convertToDTO(Administrator administrator) {
-        AdministratorDTO administratorDTO = new AdministratorDTO();
-        administratorDTO.id = administrator.getId();
-        administratorDTO.firstName = administrator.getFirstName();
-        administratorDTO.lastName = administrator.getLastName();
-        administratorDTO.phone = administrator.getPhone();
-        administratorDTO.login = administrator.getLogin();
-        administratorDTO.password = administrator.getPassword();
-        administratorDTO.dealerCenterList = administrator.getDealerCenterList();
-        return administratorDTO;
+        return AdministratorDTO.builder()
+                .id(administrator.getId())
+                .firstName(administrator.getFirstName())
+                .lastName(administrator.getLastName())
+                .phone(administrator.getPhone())
+                .login(administrator.getLogin())
+                .password(administrator.getPassword())
+                .dealerCenterList(administrator.getDealerCenterList())
+                .build();
     }
 
     @Override

@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 public class CarDTOConverterImpl implements CarDTOConverter {
     @Override
     public CarDTO convertToDTO(Car car) {
-        CarDTO carDTO = new CarDTO();
-        carDTO.engine = car.getEngine();
-        carDTO.color = car.getColor();
-        carDTO.brand = car.getBrand();
-        carDTO.country = car.getCountry();
-        carDTO.price = car.getPrice();
-        return carDTO;
+        return CarDTO.builder()
+                .engine(car.getEngine())
+                .color(car.getColor())
+                .brand(car.getBrand())
+                .country(car.getCountry())
+                .price(car.getPrice())
+                .build();
     }
 }

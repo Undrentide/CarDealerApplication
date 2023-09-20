@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SpecialOffer extends AbstractEntity {
+
     @OneToMany
     @JoinTable(
             name = "offer_location",

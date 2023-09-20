@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.rmi.ServerException;
-
 @Slf4j
 @RestControllerAdvice
 public class GlobalControllerExceptionHandler extends ResponseEntityExceptionHandler {
@@ -20,6 +18,13 @@ public class GlobalControllerExceptionHandler extends ResponseEntityExceptionHan
         log.error(ex.getMessage(), ex);
         return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(),
                 HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
+
+    @ExceptionHandler(value = {EntityNotFoundException.class})
+    protected ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException e,
+                                                                   WebRequest request) {
+        log.debug(e.getMessage(), e);
+        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
     @ExceptionHandler(value = {InvalidJwtException.class})
@@ -31,18 +36,12 @@ public class GlobalControllerExceptionHandler extends ResponseEntityExceptionHan
     @ExceptionHandler(value = {ExpiredJwtException.class})
     protected ResponseEntity<Object> handleExpiredJwtException(ExpiredJwtException e, WebRequest request) {
         log.debug(e.getMessage(), e);
-        return handleExceptionInternal(e, "Token expired", new HttpHeaders(), HttpStatus.CONFLICT, request);
+        return handleExceptionInternal(e, "Token expired", new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
     }
 
     @ExceptionHandler(value = {UserNotFoundException.class})
     protected ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException e, WebRequest request) {
         log.debug(e.getMessage(), e);
         return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
-    }
-
-    @ExceptionHandler(value = {ServerException.class})
-    protected ResponseEntity<Object> handleServletException(ServerException e, WebRequest request) {
-        log.debug(e.getMessage(), e);
-        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
     }
 }

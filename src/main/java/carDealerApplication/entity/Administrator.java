@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Administrator extends AbstractUserEntity {
+
     @OneToMany
     @JoinTable(
             name = "administrator_dealer",

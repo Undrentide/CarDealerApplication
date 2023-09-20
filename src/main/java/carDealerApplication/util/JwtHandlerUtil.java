@@ -20,7 +20,7 @@ public class JwtHandlerUtil {
         if (jwtToken != null && jwtToken.startsWith("Bearer ")) {
             if (!consultantRepository.getConsultantByLogin(Jwts.parser().setSigningKey(secret)
                     .parseClaimsJws(jwtToken.substring(7)).getBody().getSubject()).isPresent()) {
-                throw new InvalidJwtException("Its not consultant`s token.");
+                throw new InvalidJwtException("Access denied.");
             }
         } else {
             throw new InvalidJwtException("JWT token does not begin with Bearer string");
@@ -31,7 +31,7 @@ public class JwtHandlerUtil {
         if (jwtToken != null && jwtToken.startsWith("Bearer ")) {
             if (!administratorRepository.getAdministratorByLogin(Jwts.parser().setSigningKey(secret)
                     .parseClaimsJws(jwtToken.substring(7)).getBody().getSubject()).isPresent()) {
-                throw new InvalidJwtException("Its not administrator`s token.");
+                throw new InvalidJwtException("Access denied.");
             }
         } else {
             throw new InvalidJwtException("JWT token does not begin with Bearer string");

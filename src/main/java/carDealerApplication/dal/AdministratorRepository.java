@@ -9,4 +9,6 @@ public interface AdministratorRepository extends CrudRepository<Administrator, L
     Optional<Administrator> getAdministratorByLoginAndPassword(String login, String password);
 
     Optional<Administrator> getAdministratorByLogin(String login);
+
+    Optional<Administrator> getAdministratorByPhone(Long phone);
 }

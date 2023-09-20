@@ -2,21 +2,25 @@ package carDealerApplication.api.validator;
 
 import carDealerApplication.api.dto.AdministratorDTO;
 import carDealerApplication.api.dto.ConsultantDTO;
-import carDealerApplication.entity.Car;
-import carDealerApplication.entity.DealerCenter;
-import carDealerApplication.entity.Manufacturer;
-import carDealerApplication.entity.SpecialOffer;
+import carDealerApplication.dal.AdministratorRepository;
+import carDealerApplication.dal.ConsultantRepository;
+import carDealerApplication.entity.*;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor
 public class AdministratorApiValidator {
+    private final ConsultantRepository consultantRepository;
+    private final AdministratorRepository administratorRepository;
+
     public void validateCar(Car car) {
         if (car.getEngine() == null || car.getColor() == null || car.getBrand() == null
                 || car.getCountry() == null || car.getPrice() == 0) {
             throw new IllegalArgumentException("Engine, color, brand, country and price - shouldn't be empty");
-        } else if (!car.getColor().chars().allMatch(Character::isLetter) ||
-                car.getBrand().chars().allMatch(Character::isLetter) || car.getCountry().chars().allMatch(Character::isLetter)) {
-            throw new IllegalArgumentException("Engine, color, brand, country - only letters are acceptable");
+        } else if (!car.getColor().matches("[a-zA-z\\s]*") ||
+                !car.getBrand().matches("[a-zA-z\\s]*") || !car.getCountry().matches("[a-zA-z\\s]*")) {
+            throw new IllegalArgumentException("Color, brand, country - only letters are acceptable");
         }
     }
 
@@ -28,12 +32,12 @@ public class AdministratorApiValidator {
     }
 
     public void validateManufacturer(Manufacturer manufacturer) {
-        if (manufacturer.getName() == null || manufacturer.getCountry() == null || manufacturer.getOrigination() == null ||
-                manufacturer.getOrigination() <= 1850) {
+        if (manufacturer.getName() == null || manufacturer.getCountry() == null || manufacturer.getOriginationYear() == null ||
+                manufacturer.getOriginationYear() <= 1850) {
             throw new IllegalArgumentException("Name and country - shouldn't be empty, origination year - not null and above 1850");
-        } else if (!manufacturer.getName().chars().allMatch(Character::isLetter) ||
-                manufacturer.getCountry().chars().allMatch(Character::isLetter)) {
-            throw new IllegalArgumentException("Engine, color, brand, country - only letters are acceptable");
+        } else if (!manufacturer.getName().matches("[a-zA-z\\s]*") ||
+                !manufacturer.getCountry().matches("[a-zA-z\\s]*")) {
+            throw new IllegalArgumentException("Name and country - only letters are acceptable");
         }
     }
 
@@ -42,8 +46,11 @@ public class AdministratorApiValidator {
                 consultantDTO.phone == 0 || consultantDTO.login == null || consultantDTO.password == null ||
                 consultantDTO.rate == null || consultantDTO.manufacturer == null) {
             throw new IllegalArgumentException("First name, last name, phone number, login, password, rate and manufacturer id - shouldn't be empty");
-        } else if (!consultantDTO.firstName.chars().allMatch(Character::isLetter) || consultantDTO.lastName.chars().allMatch(Character::isLetter)) {
+        } else if (!consultantDTO.firstName.matches("[a-zA-z\\s]*") || !consultantDTO.lastName.matches("[a-zA-z\\s]*")) {
             throw new IllegalArgumentException("First name, last name - only letters are acceptable");
+        }
+        if (consultantRepository.getConsultantByPhone(consultantDTO.phone).isPresent()) {
+            throw new IllegalArgumentException("User with this phone is already here.");
         }
     }
 
@@ -52,8 +59,11 @@ public class AdministratorApiValidator {
                 administratorDTO.phone == 0 || administratorDTO.login == null || administratorDTO.password == null ||
                 administratorDTO.dealerCenterList == null) {
             throw new IllegalArgumentException("First name, last name, phone number, login, password and dealer center list - shouldn't be empty");
-        } else if (!administratorDTO.firstName.chars().allMatch(Character::isLetter) || administratorDTO.lastName.chars().allMatch(Character::isLetter)) {
+        } else if (!administratorDTO.firstName.matches("[a-zA-z\\s]*") || !administratorDTO.lastName.matches("[a-zA-z\\s]*")) {
             throw new IllegalArgumentException("First name, last name - only letters are acceptable");
+        }
+        if (administratorRepository.getAdministratorByPhone(administratorDTO.phone).isPresent()) {
+            throw new IllegalArgumentException("User with this phone is already here.");
         }
     }
 

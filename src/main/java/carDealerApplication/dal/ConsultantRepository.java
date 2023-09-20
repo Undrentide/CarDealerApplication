@@ -9,4 +9,6 @@ public interface ConsultantRepository extends CrudRepository<Consultant, Long> {
     Optional<Consultant> getConsultantByLoginAndPassword(String login, String password);
 
     Optional<Consultant> getConsultantByLogin(String login);
+
+    Optional<Consultant> getConsultantByPhone(Long phone);
 }

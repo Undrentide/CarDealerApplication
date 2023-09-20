@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 public class LocationDTOConverterImpl implements LocationDTOConverter {
     @Override
     public LocationDTO convertToDTO(Location location) {
-        LocationDTO locationDTO = new LocationDTO();
-        locationDTO.country = location.getCountry();
-        locationDTO.city = location.getCity();
-        locationDTO.street = location.getStreet();
-        return locationDTO;
+        return LocationDTO.builder()
+                .country(location.getCountry())
+                .city(location.getCity())
+                .street(location.getStreet())
+                .build();
     }
 }

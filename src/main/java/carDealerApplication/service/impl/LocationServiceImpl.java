@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -21,11 +22,7 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public List<Location> fetchEntityList() {
-        List<Location> locationList = new ArrayList<>();
-        for (Location location : locationRepository.findAll()) {
-            locationList.add(location);
-        }
-        return locationList;
+        return new ArrayList<>((Collection<? extends Location>) locationRepository.findAll());
     }
 
     @Override

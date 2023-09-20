@@ -3,12 +3,14 @@ package carDealerApplication.service.impl;
 import carDealerApplication.api.dto.DealerCenterDTO;
 import carDealerApplication.dal.DealerCenterRepository;
 import carDealerApplication.entity.DealerCenter;
+import carDealerApplication.exception.EntityNotFoundException;
 import carDealerApplication.service.DealerCenterService;
 import carDealerApplication.service.dtoConverter.DealerCenterDTOConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -24,25 +26,23 @@ public class DealerCenterServiceImpl implements DealerCenterService {
 
     @Override
     public List<DealerCenter> fetchEntityList() {
-        List<DealerCenter> dealerCenterList = new ArrayList<>();
-        for (DealerCenter dealerCenter : dealerCenterRepository.findAll()) {
-            dealerCenterList.add(dealerCenter);
-        }
-        return dealerCenterList;
+        return new ArrayList<>((Collection<? extends DealerCenter>) dealerCenterRepository.findAll());
     }
 
     @Override
     public void deleteEntityById(Long dealerCenterId) {
-        dealerCenterRepository.deleteById(dealerCenterId);
+        if (dealerCenterRepository.existsById(dealerCenterId)) {
+            dealerCenterRepository.deleteById(dealerCenterId);
+        } else {
+            throw new EntityNotFoundException("Dealer center not found.");
+        }
     }
 
     @Override
     public List<DealerCenterDTO> fetchOpenedDealersByCountry(String country) {
         List<DealerCenterDTO> dealerCenterDTOList = new ArrayList<>();
-        for (DealerCenter dealerCenter : dealerCenterRepository.findAll()) {
-            if (country.equals(dealerCenter.getLocation().getCountry()) && dealerCenter.isOpen()) {
-                dealerCenterDTOList.add(dealerCenterDTOConverter.convertToDTO(dealerCenter));
-            }
+        for (DealerCenter dealerCenter : dealerCenterRepository.findDealerCentersByLocationCountryAndIsOpen(country, true)) {
+            dealerCenterDTOList.add(dealerCenterDTOConverter.convertToDTO(dealerCenter));
         }
         return dealerCenterDTOList;
     }
@@ -50,33 +50,19 @@ public class DealerCenterServiceImpl implements DealerCenterService {
     @Override
     public List<DealerCenterDTO> fetchOpenedDealersByCity(String city) {
         List<DealerCenterDTO> dealerCenterDTOList = new ArrayList<>();
-        for (DealerCenter dealerCenter : dealerCenterRepository.findAll()) {
-            if (city.equals(dealerCenter.getLocation().getCity()) && dealerCenter.isOpen()) {
-                dealerCenterDTOList.add(dealerCenterDTOConverter.convertToDTO(dealerCenter));
-            }
+        for (DealerCenter dealerCenter : dealerCenterRepository.findDealerCentersByLocationCityAndIsOpen(city, true)) {
+            dealerCenterDTOList.add(dealerCenterDTOConverter.convertToDTO(dealerCenter));
         }
         return dealerCenterDTOList;
     }
 
     @Override
     public List<DealerCenter> fetchAllDealersByCountry(String country) {
-        List<DealerCenter> dealerCenterList = new ArrayList<>();
-        for (DealerCenter dealerCenter : dealerCenterRepository.findAll()) {
-            if (country.equals(dealerCenter.getLocation().getCountry())) {
-                dealerCenterList.add(dealerCenter);
-            }
-        }
-        return dealerCenterList;
+        return new ArrayList<>(dealerCenterRepository.findDealerCentersByLocationCountry(country));
     }
 
     @Override
     public List<DealerCenter> fetchAllDealersByCity(String city) {
-        List<DealerCenter> dealerCenterList = new ArrayList<>();
-        for (DealerCenter dealerCenter : dealerCenterRepository.findAll()) {
-            if (city.equals(dealerCenter.getLocation().getCity())) {
-                dealerCenterList.add(dealerCenter);
-            }
-        }
-        return dealerCenterList;
+        return new ArrayList<>(dealerCenterRepository.findDealerCentersByLocationCity(city));
     }
 }

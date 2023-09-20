@@ -3,6 +3,7 @@ package carDealerApplication.service.impl;
 import carDealerApplication.api.dto.AdministratorDTO;
 import carDealerApplication.dal.AdministratorRepository;
 import carDealerApplication.entity.Administrator;
+import carDealerApplication.exception.EntityNotFoundException;
 import carDealerApplication.exception.UserNotFoundException;
 import carDealerApplication.service.AdministratorService;
 import carDealerApplication.service.dtoConverter.AdministratorDTOConverter;
@@ -34,7 +35,12 @@ public class AdministrationServiceImpl implements AdministratorService {
 
     @Override
     public void deleteEntityById(Long administratorId) {
-        administratorRepository.deleteById(administratorId);
+        if (administratorRepository.existsById(administratorId)) {
+            administratorRepository.deleteById(administratorId);
+        } else {
+            throw new EntityNotFoundException("User not found.");
+        }
+
     }
 
     @Override

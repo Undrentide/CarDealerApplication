@@ -14,5 +14,5 @@ import lombok.*;
 public class Manufacturer extends AbstractEntity {
     private String name;
     private String country;
-    private Integer origination;
+    private Short originationYear;
 }

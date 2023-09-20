@@ -17,12 +17,13 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Car extends AbstractEntity {
+
     @Convert(converter = JpaConverterJson.class)
     @ColumnTransformer(write = "?::jsonb")
     private Map<String, String> engine;
     private String color;
     private String brand;
     private String country;
-    private int price;
-    private boolean isAvailable;
+    private Integer price;
+    private Boolean isAvailable = false;
 }

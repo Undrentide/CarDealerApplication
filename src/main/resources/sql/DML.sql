@@ -9,22 +9,22 @@ INSERT INTO administrator(first_name, last_name, phone, login, password)
 VALUES ('Admin', 'First', 01234567, 'firstadmin', 'adminpass1'),
        ('Admin', 'Second', 9876543, 'secondadmin', 'adminpass2');
 
-INSERT INTO manufacturer("name", country, origination)
+INSERT INTO manufacturer("name", country, origination_year)
 VALUES ('Toyota Motor Corporation', 'Japan', 1937),
        ('Suzuki Motor Corporation', 'Japan', 1909),
        ('Subaru Corporation', 'Japan', 1953);
 
 INSERT INTO consultant(first_name, last_name, phone, login, password, rate, manufacturer_id)
-VALUES ('Consultant', 'First', 12468, 'firstcons', 'conspass1', 75.1, 1),
-       ('Consultant', 'Second', 02368, 'secondcons', 'conspass1', 72.7, 1),
-       ('Consultant', 'Third', 02264, 'thirdcons', 'conspass1', 92.2, 1),
-       ('Consultant', 'Fourth', 22468, 'fourthcons', 'conspass1', 94.8, 1),
-       ('Consultant', 'Fifth', 04268, 'fifthcons', 'conspass1', 76.5, 2),
-       ('Consultant', 'Sixth', 03218, 'sixthcons', 'conspass1', 71.9, 2),
-       ('Consultant', 'Seventh', 03368, 'seventhcons', 'conspass1', 88.3, 3),
-       ('Consultant', 'Eighth', 023368, 'eighthcons', 'conspass1', 89.0, 3),
-       ('Consultant', 'Ninth', 047778, 'ninthcons', 'conspass1', 97.4, 3),
-       ('Consultant', 'Zeroth', 02438, 'zerothcons', 'conspass1', 96.6, 3);
+VALUES ('Consultant', 'First', 12468, 'firstcons', 'conspass1', 750.0, 1),
+       ('Consultant', 'Second', 02368, 'secondcons', 'conspass1', 720.0, 1),
+       ('Consultant', 'Third', 02264, 'thirdcons', 'conspass1', 920.0, 1),
+       ('Consultant', 'Fourth', 22468, 'fourthcons', 'conspass1', 940.0, 1),
+       ('Consultant', 'Fifth', 04268, 'fifthcons', 'conspass1', 760.0, 2),
+       ('Consultant', 'Sixth', 03218, 'sixthcons', 'conspass1', 710.0, 2),
+       ('Consultant', 'Seventh', 03368, 'seventhcons', 'conspass1', 880.0, 3),
+       ('Consultant', 'Eighth', 023368, 'eighthcons', 'conspass1', 890.0, 3),
+       ('Consultant', 'Ninth', 047778, 'ninthcons', 'conspass1', 970.0, 3),
+       ('Consultant', 'Zeroth', 02438, 'zerothcons', 'conspass1', 960.0, 3);
 
 INSERT INTO dealer(location_id, is_open, hours)
 VALUES (1, true, '08.00 - 20.00'),

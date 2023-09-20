@@ -5,6 +5,8 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "consultant")
@@ -13,7 +15,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Consultant extends AbstractUserEntity {
-    private Double rate;
+    private BigDecimal rate;
+
     @OneToOne
     private Manufacturer manufacturer;
 }

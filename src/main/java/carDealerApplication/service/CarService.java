@@ -10,5 +10,5 @@ public interface CarService extends EntityService<Car, Long> {
 
     List<Car> fetchUnavailableCar();
 
-    List<CarDTO> optimizedFetchAvailableCar();
+    List<CarDTO> limitedFetchAvailableCar();
 }

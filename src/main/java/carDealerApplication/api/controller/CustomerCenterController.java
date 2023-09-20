@@ -21,7 +21,7 @@ public class CustomerCenterController {
 
     @GetMapping("car")
     public List<CarDTO> fetchCarList() {
-        return carService.optimizedFetchAvailableCar();
+        return carService.limitedFetchAvailableCar();
     }
 
     @GetMapping("legal_info")

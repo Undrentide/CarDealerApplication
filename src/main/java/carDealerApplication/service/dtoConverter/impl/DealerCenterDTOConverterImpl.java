@@ -14,9 +14,9 @@ public class DealerCenterDTOConverterImpl implements DealerCenterDTOConverter {
 
     @Override
     public DealerCenterDTO convertToDTO(DealerCenter dealerCenter) {
-        DealerCenterDTO dealerCenterDTO = new DealerCenterDTO();
-        dealerCenterDTO.locationDTO = locationDTOConverter.convertToDTO(dealerCenter.getLocation());
-        dealerCenterDTO.hours = dealerCenter.getHours();
-        return dealerCenterDTO;
+        return DealerCenterDTO.builder()
+                .locationDTO(locationDTOConverter.convertToDTO(dealerCenter.getLocation()))
+                .hours(dealerCenter.getHours())
+                .build();
     }
 }

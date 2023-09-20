@@ -13,11 +13,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DealerCenter extends AbstractEntity {
+
     @OneToOne
     private Location location;
+
     @Column(name = "is_open")
-    private boolean isOpen;
+    private Boolean isOpen;
     private String hours;
+
     @OneToMany
     @JoinTable(
             name = "dealer_consultant",
@@ -25,6 +28,7 @@ public class DealerCenter extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "consultant_id")
     )
     private List<Consultant> consultantList;
+
     @OneToMany
     @JoinTable(
             name = "dealer_car",

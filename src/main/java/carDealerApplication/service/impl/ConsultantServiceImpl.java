@@ -3,6 +3,7 @@ package carDealerApplication.service.impl;
 import carDealerApplication.api.dto.ConsultantDTO;
 import carDealerApplication.dal.ConsultantRepository;
 import carDealerApplication.entity.Consultant;
+import carDealerApplication.exception.EntityNotFoundException;
 import carDealerApplication.exception.UserNotFoundException;
 import carDealerApplication.service.ConsultantService;
 import carDealerApplication.service.dtoConverter.ConsultantDTOConverter;
@@ -34,7 +35,11 @@ public class ConsultantServiceImpl implements ConsultantService {
 
     @Override
     public void deleteEntityById(Long consultantId) {
-        consultantRepository.deleteById(consultantId);
+        if(consultantRepository.existsById(consultantId)){
+            consultantRepository.deleteById(consultantId);
+        } else {
+            throw new EntityNotFoundException("User not found.");
+        }
     }
 
     @Override

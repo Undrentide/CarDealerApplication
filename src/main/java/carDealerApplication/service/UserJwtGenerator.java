@@ -12,7 +12,7 @@ import java.util.Date;
 public class UserJwtGenerator {
     @Value("${jwt.secret}")
     private String secret;
-    public static final long JWT_TOKEN_VALIDITY = 20;
+    public static final long JWT_TOKEN_VALIDITY = 1000;
 
     public String userJwtGenerateToken(AbstractUserEntity abstractUserEntity) {
         return Jwts.builder().setSubject(abstractUserEntity.getLogin()).setIssuedAt(new Date(System.currentTimeMillis()))

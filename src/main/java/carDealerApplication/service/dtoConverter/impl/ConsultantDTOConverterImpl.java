@@ -11,16 +11,16 @@ import org.springframework.stereotype.Component;
 public class ConsultantDTOConverterImpl implements ConsultantDTOConverter {
     @Override
     public ConsultantDTO convertToDTO(Consultant consultant) {
-        ConsultantDTO consultantDTO = new ConsultantDTO();
-        consultantDTO.id = consultant.getId();
-        consultantDTO.firstName = consultant.getFirstName();
-        consultantDTO.lastName = consultant.getLastName();
-        consultantDTO.phone = consultant.getPhone();
-        consultantDTO.login = consultant.getLogin();
-        consultantDTO.password = consultant.getPassword();
-        consultantDTO.rate = consultant.getRate();
-        consultantDTO.manufacturer = consultant.getManufacturer();
-        return consultantDTO;
+        return ConsultantDTO.builder()
+                .id(consultant.getId())
+                .firstName(consultant.getFirstName())
+                .lastName(consultant.getLastName())
+                .phone(consultant.getPhone())
+                .login(consultant.getLogin())
+                .password(consultant.getPassword())
+                .rate(consultant.getRate())
+                .manufacturer(consultant.getManufacturer())
+                .build();
     }
 
     @Override
