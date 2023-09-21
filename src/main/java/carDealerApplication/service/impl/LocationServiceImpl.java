@@ -4,6 +4,7 @@ import carDealerApplication.dal.LocationRepository;
 import carDealerApplication.entity.Location;
 import carDealerApplication.service.LocationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,8 +21,8 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    public List<Location> fetchEntityList() {
-        return new ArrayList<>(locationRepository.findAll());
+    public List<Location> fetchEntityList(PageRequest pageRequest) {
+        return new ArrayList<>(locationRepository.findAll(pageRequest).getContent());
     }
 
     @Override

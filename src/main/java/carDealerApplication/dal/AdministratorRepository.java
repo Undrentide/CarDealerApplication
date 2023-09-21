@@ -1,12 +1,12 @@
 package carDealerApplication.dal;
 
 import carDealerApplication.entity.Administrator;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface AdministratorRepository extends CrudRepository<Administrator, Long> {
+public interface AdministratorRepository extends JpaRepository<Administrator, Long> {
     Optional<Administrator> getAdministratorByLoginAndPassword(String login, String password);
 
     Optional<Administrator> getAdministratorByLogin(String login);

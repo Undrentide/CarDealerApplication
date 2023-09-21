@@ -7,6 +7,8 @@ import carDealerApplication.entity.*;
 import carDealerApplication.service.*;
 import carDealerApplication.util.JwtHandlerUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,45 +29,66 @@ public class AdministratorController {
     private final AdministratorApiValidator administratorApiValidator;
 
     @GetMapping("car")
-    public List<Car> fetchCarList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+    public List<Car> fetchCarList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                  @RequestParam(required = false, defaultValue = "1") int page,
+                                  @RequestParam(required = false, defaultValue = "1") int size,
+                                  @RequestParam(required = false, defaultValue = "price") String sortOrder) {
         jwtHandlerUtil.validateJwtForAdministrator(jwtToken);
-        return carService.fetchEntityList();
+        return carService.fetchEntityList(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("dealer_center")
-    public List<DealerCenter> fetchDealerCenterList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+    public List<DealerCenter> fetchDealerCenterList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                                    @RequestParam(required = false, defaultValue = "1") int page,
+                                                    @RequestParam(required = false, defaultValue = "1") int size,
+                                                    @RequestParam(required = false, defaultValue = "hours") String sortOrder) {
         jwtHandlerUtil.validateJwtForAdministrator(jwtToken);
-        return dealerCenterService.fetchEntityList();
+        return dealerCenterService.fetchEntityList(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("manufacturer")
-    public List<Manufacturer> fetchManufacturerList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+    public List<Manufacturer> fetchManufacturerList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                                    @RequestParam(required = false, defaultValue = "1") int page,
+                                                    @RequestParam(required = false, defaultValue = "1") int size,
+                                                    @RequestParam(required = false, defaultValue = "originationYear") String sortOrder) {
         jwtHandlerUtil.validateJwtForAdministrator(jwtToken);
-        return manufacturerService.fetchEntityList();
+        return manufacturerService.fetchEntityList(PageRequest.of(page, size, Sort.by(sortOrder).descending()));
     }
 
     @GetMapping("consultant")
-    public List<ConsultantDTO> fetchConsultantList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+    public List<ConsultantDTO> fetchConsultantList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                                   @RequestParam(required = false, defaultValue = "1") int page,
+                                                   @RequestParam(required = false, defaultValue = "1") int size,
+                                                   @RequestParam(required = false, defaultValue = "id") String sortOrder) {
         jwtHandlerUtil.validateJwtForAdministrator(jwtToken);
-        return consultantService.fetchEntityList();
+        return consultantService.fetchEntityList(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("administrator")
-    public List<AdministratorDTO> fetchAdministratorList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+    public List<AdministratorDTO> fetchAdministratorList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                                         @RequestParam(required = false, defaultValue = "1") int page,
+                                                         @RequestParam(required = false, defaultValue = "1") int size,
+                                                         @RequestParam(required = false, defaultValue = "id") String sortOrder) {
         jwtHandlerUtil.validateJwtForAdministrator(jwtToken);
-        return administratorService.fetchEntityList();
+        return administratorService.fetchEntityList(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("special_offer")
-    public List<SpecialOffer> fetchSpecialOfferList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+    public List<SpecialOffer> fetchSpecialOfferList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                                    @RequestParam(required = false, defaultValue = "1") int page,
+                                                    @RequestParam(required = false, defaultValue = "1") int size,
+                                                    @RequestParam(required = false, defaultValue = "amount") String sortOrder) {
         jwtHandlerUtil.validateJwtForAdministrator(jwtToken);
-        return specialOfferService.fetchEntityList();
+        return specialOfferService.fetchEntityList(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("location")
-    public List<Location> fetchLocationList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+    public List<Location> fetchLocationList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                            @RequestParam(required = false, defaultValue = "1") int page,
+                                            @RequestParam(required = false, defaultValue = "1") int size,
+                                            @RequestParam(required = false, defaultValue = "city") String sortOrder) {
         jwtHandlerUtil.validateJwtForAdministrator(jwtToken);
-        return locationService.fetchEntityList();
+        return locationService.fetchEntityList(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @PutMapping("car")

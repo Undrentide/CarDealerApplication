@@ -7,6 +7,7 @@ import carDealerApplication.exception.EntityNotFoundException;
 import carDealerApplication.service.DealerCenterService;
 import carDealerApplication.service.dtoConverter.impl.DealerCenterDTOConverter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,8 +25,8 @@ public class DealerCenterServiceImpl implements DealerCenterService {
     }
 
     @Override
-    public List<DealerCenter> fetchEntityList() {
-        return new ArrayList<>(dealerCenterRepository.findAll());
+    public List<DealerCenter> fetchEntityList(PageRequest pageRequest) {
+        return new ArrayList<>(dealerCenterRepository.findAll(pageRequest).getContent());
     }
 
     @Override
@@ -38,24 +39,24 @@ public class DealerCenterServiceImpl implements DealerCenterService {
     }
 
     @Override
-    public List<DealerCenterDTO> fetchOpenedDealersByCountry(String country) {
+    public List<DealerCenterDTO> fetchOpenedDealersByCountry(String country, PageRequest pageRequest) {
         return new ArrayList<>(dealerCenterDTOConverter.convertAllToDto(dealerCenterRepository
-                .findDealerCentersByLocationCountryAndIsOpen(country, true)));
+                .findDealerCentersByLocationCountryAndIsOpen(country, true, pageRequest)));
     }
 
     @Override
-    public List<DealerCenterDTO> fetchOpenedDealersByCity(String city) {
+    public List<DealerCenterDTO> fetchOpenedDealersByCity(String city, PageRequest pageRequest) {
         return new ArrayList<>(dealerCenterDTOConverter.convertAllToDto(dealerCenterRepository
-                .findDealerCentersByLocationCityAndIsOpen(city, true)));
+                .findDealerCentersByLocationCityAndIsOpen(city, true, pageRequest)));
     }
 
     @Override
-    public List<DealerCenter> fetchAllDealersByCountry(String country) {
-        return new ArrayList<>(dealerCenterRepository.findDealerCentersByLocationCountry(country));
+    public List<DealerCenter> fetchAllDealersByCountry(String country, PageRequest pageRequest) {
+        return new ArrayList<>(dealerCenterRepository.findDealerCentersByLocationCountry(country, pageRequest));
     }
 
     @Override
-    public List<DealerCenter> fetchAllDealersByCity(String city) {
-        return new ArrayList<>(dealerCenterRepository.findDealerCentersByLocationCity(city));
+    public List<DealerCenter> fetchAllDealersByCity(String city, PageRequest pageRequest) {
+        return new ArrayList<>(dealerCenterRepository.findDealerCentersByLocationCity(city, pageRequest));
     }
 }

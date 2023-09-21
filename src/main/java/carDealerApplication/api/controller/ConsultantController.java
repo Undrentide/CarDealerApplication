@@ -8,6 +8,8 @@ import carDealerApplication.service.DealerCenterService;
 import carDealerApplication.service.SpecialOfferService;
 import carDealerApplication.util.JwtHandlerUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,35 +25,50 @@ public class ConsultantController {
     private final JwtHandlerUtil jwtHandlerUtil;
 
     @GetMapping("available_car")
-    public List<Car> fetchAvailableCarList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+    public List<Car> fetchAvailableCarList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                           @RequestParam(required = false, defaultValue = "1") int page,
+                                           @RequestParam(required = false, defaultValue = "1") int size,
+                                           @RequestParam(required = false, defaultValue = "price") String sortOrder) {
         jwtHandlerUtil.validateJwtForConsultant(jwtToken);
-        return carService.fetchAvailableCar();
+        return carService.fetchAvailableCar(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("unavailable_car")
-    public List<Car> fetchUnavailableCarList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+    public List<Car> fetchUnavailableCarList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                             @RequestParam(required = false, defaultValue = "1") int page,
+                                             @RequestParam(required = false, defaultValue = "1") int size,
+                                             @RequestParam(required = false, defaultValue = "price") String sortOrder) {
         jwtHandlerUtil.validateJwtForConsultant(jwtToken);
-        return carService.fetchUnavailableCar();
+        return carService.fetchUnavailableCar(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("all_dealers/country/{country}")
     public List<DealerCenter> fetchAllDealersByCountry(@PathVariable("country") String country,
-                                                       @RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+                                                       @RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                                       @RequestParam(required = false, defaultValue = "1") int page,
+                                                       @RequestParam(required = false, defaultValue = "1") int size,
+                                                       @RequestParam(required = false, defaultValue = "hours") String sortOrder) {
         jwtHandlerUtil.validateJwtForConsultant(jwtToken);
-        return dealerCenterService.fetchAllDealersByCountry(country);
+        return dealerCenterService.fetchAllDealersByCountry(country, PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("all_dealers/city/{city}")
     public List<DealerCenter> fetchAllDealersByCity(@PathVariable("city") String city,
-                                                    @RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+                                                    @RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                                    @RequestParam(required = false, defaultValue = "1") int page,
+                                                    @RequestParam(required = false, defaultValue = "1") int size,
+                                                    @RequestParam(required = false, defaultValue = "hours") String sortOrder) {
         jwtHandlerUtil.validateJwtForConsultant(jwtToken);
-        return dealerCenterService.fetchAllDealersByCity(city);
+        return dealerCenterService.fetchAllDealersByCity(city, PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("special_offer/{country}")
     public List<SpecialOffer> fetchSpecialOffersByCountry(@PathVariable("country") String country,
-                                                          @RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken) {
+                                                          @RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                                          @RequestParam(required = false, defaultValue = "1") int page,
+                                                          @RequestParam(required = false, defaultValue = "1") int size,
+                                                          @RequestParam(required = false, defaultValue = "city") String sortOrder) {
         jwtHandlerUtil.validateJwtForConsultant(jwtToken);
-        return specialOfferService.fetchSpecialOfferByCountry(country);
+        return specialOfferService.fetchSpecialOfferByCountry(country, PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 }

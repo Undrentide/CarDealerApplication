@@ -7,6 +7,7 @@ import carDealerApplication.exception.UserNotFoundException;
 import carDealerApplication.service.AdministratorService;
 import carDealerApplication.service.dtoConverter.impl.AdministratorDTOConverter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,8 +25,8 @@ public class AdministrationServiceImpl implements AdministratorService {
     }
 
     @Override
-    public List<AdministratorDTO> fetchEntityList() {
-        return new ArrayList<>(administratorDTOConverter.convertAllToDto(administratorRepository.findAll()));
+    public List<AdministratorDTO> fetchEntityList(PageRequest pageRequest) {
+        return new ArrayList<>(administratorDTOConverter.convertAllToDto(administratorRepository.findAll(pageRequest).getContent()));
     }
 
     @Override

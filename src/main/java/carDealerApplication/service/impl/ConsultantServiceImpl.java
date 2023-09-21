@@ -7,6 +7,7 @@ import carDealerApplication.exception.UserNotFoundException;
 import carDealerApplication.service.ConsultantService;
 import carDealerApplication.service.dtoConverter.impl.ConsultantDTOConverter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,13 +25,13 @@ public class ConsultantServiceImpl implements ConsultantService {
     }
 
     @Override
-    public List<ConsultantDTO> fetchEntityList() {
-        return new ArrayList<>(consultantDTOConverter.convertAllToDto(consultantRepository.findAll()));
+    public List<ConsultantDTO> fetchEntityList(PageRequest pageRequest) {
+        return new ArrayList<>(consultantDTOConverter.convertAllToDto(consultantRepository.findAll(pageRequest).getContent()));
     }
 
     @Override
     public void deleteEntityById(Long consultantId) {
-        if(consultantRepository.existsById(consultantId)){
+        if (consultantRepository.existsById(consultantId)) {
             consultantRepository.deleteById(consultantId);
         } else {
             throw new EntityNotFoundException("User not found.");
@@ -38,7 +39,7 @@ public class ConsultantServiceImpl implements ConsultantService {
     }
 
     @Override
-    public ConsultantDTO authenticate(ConsultantDTO consultantDTO){
+    public ConsultantDTO authenticate(ConsultantDTO consultantDTO) {
         return consultantDTOConverter.convertToDTO(consultantRepository
                 .getConsultantByLoginAndPassword(consultantDTO.login, consultantDTO.password)
                 .orElseThrow(() -> new UserNotFoundException("Wrong credentials.")));

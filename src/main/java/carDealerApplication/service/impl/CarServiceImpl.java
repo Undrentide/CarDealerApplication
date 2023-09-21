@@ -7,6 +7,7 @@ import carDealerApplication.exception.EntityNotFoundException;
 import carDealerApplication.service.CarService;
 import carDealerApplication.service.dtoConverter.impl.CarDTOConverter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,13 +25,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<Car> fetchEntityList() {
-        return new ArrayList<>(carRepository.findAll());
+    public List<Car> fetchEntityList(PageRequest pageRequest) {
+        return carRepository.findAll(pageRequest).getContent();
     }
 
     @Override
     public void deleteEntityById(Long carId) {
-        if(carRepository.existsById(carId)){
+        if (carRepository.existsById(carId)) {
             carRepository.deleteById(carId);
         } else {
             throw new EntityNotFoundException("Car not found.");
@@ -38,17 +39,17 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<Car> fetchAvailableCar() {
-        return new ArrayList<>(carRepository.findCarsByIsAvailable(true));
+    public List<Car> fetchAvailableCar(PageRequest pageRequest) {
+        return new ArrayList<>(carRepository.findCarsByIsAvailable(true, pageRequest));
     }
 
     @Override
-    public List<Car> fetchUnavailableCar() {
-        return new ArrayList<>(carRepository.findCarsByIsAvailable(false));
+    public List<Car> fetchUnavailableCar(PageRequest pageRequest) {
+        return new ArrayList<>(carRepository.findCarsByIsAvailable(false, pageRequest));
     }
 
     @Override
-    public List<CarDTO> limitedFetchAvailableCar() {
-        return new ArrayList<>(carDTOConverter.convertAllToDto(carRepository.findCarsByIsAvailable(true)));
+    public List<CarDTO> limitedFetchAvailableCar(PageRequest pageRequest) {
+        return new ArrayList<>(carDTOConverter.convertAllToDto(carRepository.findCarsByIsAvailable(true, pageRequest)));
     }
 }

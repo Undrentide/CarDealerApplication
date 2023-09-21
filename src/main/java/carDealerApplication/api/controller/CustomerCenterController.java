@@ -5,10 +5,9 @@ import carDealerApplication.api.dto.DealerCenterDTO;
 import carDealerApplication.service.CarService;
 import carDealerApplication.service.DealerCenterService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,8 +19,10 @@ public class CustomerCenterController {
     private final CarService carService;
 
     @GetMapping("car")
-    public List<CarDTO> fetchCarList() {
-        return carService.limitedFetchAvailableCar();
+    public List<CarDTO> fetchCarList(@RequestParam(required = false, defaultValue = "1") int page,
+                                     @RequestParam(required = false, defaultValue = "1") int size,
+                                     @RequestParam(required = false, defaultValue = "hours") String sortOrder) {
+        return carService.limitedFetchAvailableCar(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("legal_info")
@@ -41,12 +42,18 @@ public class CustomerCenterController {
     }
 
     @GetMapping("find_my_dealer/country/{country}")
-    public List<DealerCenterDTO> fetchDealersByCountry(@PathVariable("country") String country) {
-        return dealerCenterService.fetchOpenedDealersByCountry(country);
+    public List<DealerCenterDTO> fetchDealersByCountry(@PathVariable("country") String country,
+                                                       @RequestParam(required = false, defaultValue = "1") int page,
+                                                       @RequestParam(required = false, defaultValue = "1") int size,
+                                                       @RequestParam(required = false, defaultValue = "hours") String sortOrder) {
+        return dealerCenterService.fetchOpenedDealersByCountry(country, PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("find_my_dealer/city/{city}")
-    public List<DealerCenterDTO> fetchDealersByCity(@PathVariable("city") String city) {
-        return dealerCenterService.fetchOpenedDealersByCity(city);
+    public List<DealerCenterDTO> fetchDealersByCity(@PathVariable("city") String city,
+                                                    @RequestParam(required = false, defaultValue = "1") int page,
+                                                    @RequestParam(required = false, defaultValue = "1") int size,
+                                                    @RequestParam(required = false, defaultValue = "hours") String sortOrder) {
+        return dealerCenterService.fetchOpenedDealersByCity(city, PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 }
