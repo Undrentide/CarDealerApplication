@@ -3,6 +3,7 @@ package carDealerApplication.dal;
 import carDealerApplication.entity.Administrator;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface AdministratorRepository extends CrudRepository<Administrator, Long> {
@@ -11,4 +12,6 @@ public interface AdministratorRepository extends CrudRepository<Administrator, L
     Optional<Administrator> getAdministratorByLogin(String login);
 
     Optional<Administrator> getAdministratorByPhone(Long phone);
+
+    List<Administrator> findAll();
 }

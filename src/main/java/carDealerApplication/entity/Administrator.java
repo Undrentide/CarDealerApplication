@@ -1,8 +1,8 @@
 package carDealerApplication.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "administrator")
 @Data
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Administrator extends AbstractUserEntity {

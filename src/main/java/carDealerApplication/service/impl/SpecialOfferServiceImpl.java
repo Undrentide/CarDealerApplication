@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -25,7 +24,7 @@ public class SpecialOfferServiceImpl implements SpecialOfferService {
 
     @Override
     public List<SpecialOffer> fetchEntityList() {
-        return new ArrayList<>((Collection<? extends SpecialOffer>) specialOfferRepository.findAll());
+        return new ArrayList<>(specialOfferRepository.findAll());
     }
 
     @Override
@@ -41,5 +40,4 @@ public class SpecialOfferServiceImpl implements SpecialOfferService {
     public List<SpecialOffer> fetchSpecialOfferByCountry(String country) {
         return new ArrayList<>(specialOfferRepository.findSpecialOfferByCountriesIn(locationRepository.getLocationsByCountry(country)));
     }
-
 }

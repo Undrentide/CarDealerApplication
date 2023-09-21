@@ -13,4 +13,6 @@ public interface DealerCenterRepository extends CrudRepository<DealerCenter, Lon
     List<DealerCenter> findDealerCentersByLocationCountry(String country);
 
     List<DealerCenter> findDealerCentersByLocationCity(String city);
+
+    List<DealerCenter> findAll();
 }

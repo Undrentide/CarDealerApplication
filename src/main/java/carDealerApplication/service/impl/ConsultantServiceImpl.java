@@ -2,11 +2,10 @@ package carDealerApplication.service.impl;
 
 import carDealerApplication.api.dto.ConsultantDTO;
 import carDealerApplication.dal.ConsultantRepository;
-import carDealerApplication.entity.Consultant;
 import carDealerApplication.exception.EntityNotFoundException;
 import carDealerApplication.exception.UserNotFoundException;
 import carDealerApplication.service.ConsultantService;
-import carDealerApplication.service.dtoConverter.ConsultantDTOConverter;
+import carDealerApplication.service.dtoConverter.impl.ConsultantDTOConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,11 +25,7 @@ public class ConsultantServiceImpl implements ConsultantService {
 
     @Override
     public List<ConsultantDTO> fetchEntityList() {
-        List<ConsultantDTO> consultantDTOList = new ArrayList<>();
-        for (Consultant consultant : consultantRepository.findAll()) {
-            consultantDTOList.add(consultantDTOConverter.convertToDTO(consultant));
-        }
-        return consultantDTOList;
+        return new ArrayList<>(consultantDTOConverter.convertAllToDto(consultantRepository.findAll()));
     }
 
     @Override

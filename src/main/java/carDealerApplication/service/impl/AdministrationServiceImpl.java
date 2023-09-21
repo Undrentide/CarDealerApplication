@@ -2,11 +2,10 @@ package carDealerApplication.service.impl;
 
 import carDealerApplication.api.dto.AdministratorDTO;
 import carDealerApplication.dal.AdministratorRepository;
-import carDealerApplication.entity.Administrator;
 import carDealerApplication.exception.EntityNotFoundException;
 import carDealerApplication.exception.UserNotFoundException;
 import carDealerApplication.service.AdministratorService;
-import carDealerApplication.service.dtoConverter.AdministratorDTOConverter;
+import carDealerApplication.service.dtoConverter.impl.AdministratorDTOConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,11 +25,7 @@ public class AdministrationServiceImpl implements AdministratorService {
 
     @Override
     public List<AdministratorDTO> fetchEntityList() {
-        List<AdministratorDTO> administratorDTOList = new ArrayList<>();
-        for (Administrator administrator : administratorRepository.findAll()) {
-            administratorDTOList.add(administratorDTOConverter.convertToDTO(administrator));
-        }
-        return administratorDTOList;
+        return new ArrayList<>(administratorDTOConverter.convertAllToDto(administratorRepository.findAll()));
     }
 
     @Override
@@ -40,7 +35,6 @@ public class AdministrationServiceImpl implements AdministratorService {
         } else {
             throw new EntityNotFoundException("User not found.");
         }
-
     }
 
     @Override

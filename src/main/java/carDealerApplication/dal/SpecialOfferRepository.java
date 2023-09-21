@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface SpecialOfferRepository extends CrudRepository<SpecialOffer, Long> {
     List<SpecialOffer> findSpecialOfferByCountriesIn(List<Location> countries);
+
+    List<SpecialOffer> findAll();
 }

@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CarRepository extends CrudRepository<Car, Long> {
     List<Car> findCarsByIsAvailable(Boolean isAvailable);
+
+    List<Car> findAll();
 }
