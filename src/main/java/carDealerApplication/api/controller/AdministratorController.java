@@ -29,64 +29,64 @@ public class AdministratorController {
     private final AdministratorApiValidator administratorApiValidator;
 
     @GetMapping("car")
-    public List<Car> fetchCarList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
-                                  @RequestParam(required = false, defaultValue = "1") int page,
-                                  @RequestParam(required = false, defaultValue = "1") int size,
-                                  @RequestParam(required = false, defaultValue = "price") String sortOrder) {
+    public List<Car> fetchCarsList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                   @RequestParam(required = false, defaultValue = "1") int page,
+                                   @RequestParam(required = false, defaultValue = "1") int size,
+                                   @RequestParam(required = false, defaultValue = "price") String sortOrder) {
         jwtHandlerUtil.validateJwtForAdministrator(jwtToken);
         return carService.fetchEntityList(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("dealer_center")
-    public List<DealerCenter> fetchDealerCenterList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
-                                                    @RequestParam(required = false, defaultValue = "1") int page,
-                                                    @RequestParam(required = false, defaultValue = "1") int size,
-                                                    @RequestParam(required = false, defaultValue = "hours") String sortOrder) {
+    public List<DealerCenter> fetchDealerCentersList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                                     @RequestParam(required = false, defaultValue = "1") int page,
+                                                     @RequestParam(required = false, defaultValue = "1") int size,
+                                                     @RequestParam(required = false, defaultValue = "hours") String sortOrder) {
         jwtHandlerUtil.validateJwtForAdministrator(jwtToken);
         return dealerCenterService.fetchEntityList(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("manufacturer")
-    public List<Manufacturer> fetchManufacturerList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
-                                                    @RequestParam(required = false, defaultValue = "1") int page,
-                                                    @RequestParam(required = false, defaultValue = "1") int size,
-                                                    @RequestParam(required = false, defaultValue = "originationYear") String sortOrder) {
+    public List<Manufacturer> fetchManufacturersList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                                     @RequestParam(required = false, defaultValue = "1") int page,
+                                                     @RequestParam(required = false, defaultValue = "1") int size,
+                                                     @RequestParam(required = false, defaultValue = "originationYear") String sortOrder) {
         jwtHandlerUtil.validateJwtForAdministrator(jwtToken);
         return manufacturerService.fetchEntityList(PageRequest.of(page, size, Sort.by(sortOrder).descending()));
     }
 
     @GetMapping("consultant")
-    public List<ConsultantDTO> fetchConsultantList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
-                                                   @RequestParam(required = false, defaultValue = "1") int page,
-                                                   @RequestParam(required = false, defaultValue = "1") int size,
-                                                   @RequestParam(required = false, defaultValue = "id") String sortOrder) {
+    public List<ConsultantDTO> fetchConsultantsList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                                    @RequestParam(required = false, defaultValue = "1") int page,
+                                                    @RequestParam(required = false, defaultValue = "1") int size,
+                                                    @RequestParam(required = false, defaultValue = "id") String sortOrder) {
         jwtHandlerUtil.validateJwtForAdministrator(jwtToken);
         return consultantService.fetchEntityList(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("administrator")
-    public List<AdministratorDTO> fetchAdministratorList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
-                                                         @RequestParam(required = false, defaultValue = "1") int page,
-                                                         @RequestParam(required = false, defaultValue = "1") int size,
-                                                         @RequestParam(required = false, defaultValue = "id") String sortOrder) {
+    public List<AdministratorDTO> fetchAdministratorsList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                                          @RequestParam(required = false, defaultValue = "1") int page,
+                                                          @RequestParam(required = false, defaultValue = "1") int size,
+                                                          @RequestParam(required = false, defaultValue = "id") String sortOrder) {
         jwtHandlerUtil.validateJwtForAdministrator(jwtToken);
         return administratorService.fetchEntityList(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("special_offer")
-    public List<SpecialOffer> fetchSpecialOfferList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
-                                                    @RequestParam(required = false, defaultValue = "1") int page,
-                                                    @RequestParam(required = false, defaultValue = "1") int size,
-                                                    @RequestParam(required = false, defaultValue = "amount") String sortOrder) {
+    public List<SpecialOffer> fetchSpecialOffersList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                                     @RequestParam(required = false, defaultValue = "1") int page,
+                                                     @RequestParam(required = false, defaultValue = "1") int size,
+                                                     @RequestParam(required = false, defaultValue = "amount") String sortOrder) {
         jwtHandlerUtil.validateJwtForAdministrator(jwtToken);
         return specialOfferService.fetchEntityList(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("location")
-    public List<Location> fetchLocationList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
-                                            @RequestParam(required = false, defaultValue = "1") int page,
-                                            @RequestParam(required = false, defaultValue = "1") int size,
-                                            @RequestParam(required = false, defaultValue = "city") String sortOrder) {
+    public List<Location> fetchLocationsList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                             @RequestParam(required = false, defaultValue = "1") int page,
+                                             @RequestParam(required = false, defaultValue = "1") int size,
+                                             @RequestParam(required = false, defaultValue = "city") String sortOrder) {
         jwtHandlerUtil.validateJwtForAdministrator(jwtToken);
         return locationService.fetchEntityList(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }

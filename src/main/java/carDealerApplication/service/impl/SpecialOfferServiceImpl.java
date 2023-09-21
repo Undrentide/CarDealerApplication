@@ -38,7 +38,7 @@ public class SpecialOfferServiceImpl implements SpecialOfferService {
     }
 
     @Override
-    public List<SpecialOffer> fetchSpecialOfferByCountry(String country, PageRequest pageRequest) {
+    public List<SpecialOffer> fetchSpecialOffersByCountry(String country, PageRequest pageRequest) {
         return new ArrayList<>(specialOfferRepository.findSpecialOfferByCountriesIn(locationRepository.getLocationsByCountry(country, pageRequest)));
     }
 }

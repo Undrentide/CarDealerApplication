@@ -19,10 +19,10 @@ public class CustomerCenterController {
     private final CarService carService;
 
     @GetMapping("car")
-    public List<CarDTO> fetchCarList(@RequestParam(required = false, defaultValue = "1") int page,
-                                     @RequestParam(required = false, defaultValue = "1") int size,
-                                     @RequestParam(required = false, defaultValue = "hours") String sortOrder) {
-        return carService.limitedFetchAvailableCar(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
+    public List<CarDTO> fetchCarsList(@RequestParam(required = false, defaultValue = "1") int page,
+                                      @RequestParam(required = false, defaultValue = "1") int size,
+                                      @RequestParam(required = false, defaultValue = "hours") String sortOrder) {
+        return carService.limitedFetchAvailableCars(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("legal_info")

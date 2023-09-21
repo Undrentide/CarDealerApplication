@@ -25,21 +25,21 @@ public class ConsultantController {
     private final JwtHandlerUtil jwtHandlerUtil;
 
     @GetMapping("available_car")
-    public List<Car> fetchAvailableCarList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
-                                           @RequestParam(required = false, defaultValue = "1") int page,
-                                           @RequestParam(required = false, defaultValue = "1") int size,
-                                           @RequestParam(required = false, defaultValue = "price") String sortOrder) {
+    public List<Car> fetchAvailableCarsList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                            @RequestParam(required = false, defaultValue = "1") int page,
+                                            @RequestParam(required = false, defaultValue = "1") int size,
+                                            @RequestParam(required = false, defaultValue = "price") String sortOrder) {
         jwtHandlerUtil.validateJwtForConsultant(jwtToken);
-        return carService.fetchAvailableCar(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
+        return carService.fetchAvailableCars(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("unavailable_car")
-    public List<Car> fetchUnavailableCarList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
-                                             @RequestParam(required = false, defaultValue = "1") int page,
-                                             @RequestParam(required = false, defaultValue = "1") int size,
-                                             @RequestParam(required = false, defaultValue = "price") String sortOrder) {
+    public List<Car> fetchUnavailableCarsList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
+                                              @RequestParam(required = false, defaultValue = "1") int page,
+                                              @RequestParam(required = false, defaultValue = "1") int size,
+                                              @RequestParam(required = false, defaultValue = "price") String sortOrder) {
         jwtHandlerUtil.validateJwtForConsultant(jwtToken);
-        return carService.fetchUnavailableCar(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
+        return carService.fetchUnavailableCars(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
     @GetMapping("all_dealers/country/{country}")
@@ -69,6 +69,6 @@ public class ConsultantController {
                                                           @RequestParam(required = false, defaultValue = "1") int size,
                                                           @RequestParam(required = false, defaultValue = "city") String sortOrder) {
         jwtHandlerUtil.validateJwtForConsultant(jwtToken);
-        return specialOfferService.fetchSpecialOfferByCountry(country, PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
+        return specialOfferService.fetchSpecialOffersByCountry(country, PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 }

@@ -39,17 +39,17 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<Car> fetchAvailableCar(PageRequest pageRequest) {
+    public List<Car> fetchAvailableCars(PageRequest pageRequest) {
         return new ArrayList<>(carRepository.findCarsByIsAvailable(true, pageRequest));
     }
 
     @Override
-    public List<Car> fetchUnavailableCar(PageRequest pageRequest) {
+    public List<Car> fetchUnavailableCars(PageRequest pageRequest) {
         return new ArrayList<>(carRepository.findCarsByIsAvailable(false, pageRequest));
     }
 
     @Override
-    public List<CarDTO> limitedFetchAvailableCar(PageRequest pageRequest) {
+    public List<CarDTO> limitedFetchAvailableCars(PageRequest pageRequest) {
         return new ArrayList<>(carDTOConverter.convertAllToDto(carRepository.findCarsByIsAvailable(true, pageRequest)));
     }
 }
