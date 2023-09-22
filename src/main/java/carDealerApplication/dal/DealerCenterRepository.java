@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface DealerCenterRepository extends JpaRepository<DealerCenter, Long> {
-    List<DealerCenter> findDealerCentersByLocationCountryAndIsOpen(String country, Boolean isOpen, PageRequest pageRequest);
+    List<DealerCenter> findDealerCentersByLocationCountry(String country);
 
-    List<DealerCenter> findDealerCentersByLocationCityAndIsOpen(String city, Boolean isOpen, PageRequest pageRequest);
+    List<DealerCenter> findDealerCentersByLocationCity(String city);
 
     List<DealerCenter> findDealerCentersByLocationCountry(String country, PageRequest pageRequest);
 

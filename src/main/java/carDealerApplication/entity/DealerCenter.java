@@ -17,8 +17,8 @@ public class DealerCenter extends AbstractEntity {
     @OneToOne
     private Location location;
 
-    @Column(name = "is_open")
-    private Boolean isOpen;
+    @Transient
+    private Boolean isOpen = false;
     private String hours;
 
     @OneToMany

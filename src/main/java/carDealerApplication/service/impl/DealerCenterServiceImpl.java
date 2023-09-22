@@ -40,14 +40,36 @@ public class DealerCenterServiceImpl implements DealerCenterService {
 
     @Override
     public List<DealerCenterDTO> fetchOpenedDealersByCountry(String country, PageRequest pageRequest) {
-        return new ArrayList<>(dealerCenterDTOConverter.convertAllToDto(dealerCenterRepository
-                .findDealerCentersByLocationCountryAndIsOpen(country, true, pageRequest)));
+        List<DealerCenterDTO> dealerCenterDTOList = new ArrayList<>();
+        for (DealerCenter dealerCenter : dealerCenterRepository.findDealerCentersByLocationCountry(country)) {
+            if (dealerCenter.getIsOpen()) {
+                dealerCenterDTOList.add(dealerCenterDTOConverter.convertToDTO(dealerCenter));
+            }
+            if (dealerCenterDTOList.isEmpty()) {
+                throw new EntityNotFoundException("All dealer centers for this country is closed");
+            }
+        }
+        if (dealerCenterDTOList.isEmpty()) {
+            throw new EntityNotFoundException("No dealer centers found for this country");
+        }
+        return dealerCenterDTOList;
     }
 
     @Override
     public List<DealerCenterDTO> fetchOpenedDealersByCity(String city, PageRequest pageRequest) {
-        return new ArrayList<>(dealerCenterDTOConverter.convertAllToDto(dealerCenterRepository
-                .findDealerCentersByLocationCityAndIsOpen(city, true, pageRequest)));
+        List<DealerCenterDTO> dealerCenterDTOList = new ArrayList<>();
+        for (DealerCenter dealerCenter : dealerCenterRepository.findDealerCentersByLocationCity(city)) {
+            if (dealerCenter.getIsOpen()) {
+                dealerCenterDTOList.add(dealerCenterDTOConverter.convertToDTO(dealerCenter));
+            }
+            if (dealerCenterDTOList.isEmpty()) {
+                throw new EntityNotFoundException("All dealer centers for this city is closed");
+            }
+        }
+        if (dealerCenterDTOList.isEmpty()) {
+            throw new EntityNotFoundException("No dealer centers found for this city");
+        }
+        return dealerCenterDTOList;
     }
 
     @Override
