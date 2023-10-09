@@ -3,6 +3,7 @@ package carDealerApplication.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -17,9 +18,11 @@ public class DealerCenter extends AbstractEntity {
     @OneToOne
     private Location location;
 
-    @Transient
-    private Boolean isOpen = false;
-    private String hours;
+    @Column(name = "open_hours")
+    private LocalTime openHours;
+
+    @Column(name = "close_hours")
+    private LocalTime closeHours;
 
     @OneToMany
     @JoinTable(

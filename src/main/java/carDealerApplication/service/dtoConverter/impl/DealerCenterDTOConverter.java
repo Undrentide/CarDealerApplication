@@ -18,7 +18,8 @@ public class DealerCenterDTOConverter implements EntityDTOConverter<DealerCenter
     public DealerCenterDTO convertToDTO(DealerCenter dealerCenter) {
         return DealerCenterDTO.builder()
                 .locationDTO(locationDTOConverter.convertToDTO(dealerCenter.getLocation()))
-                .hours(dealerCenter.getHours())
+                .openHours(dealerCenter.getOpenHours())
+                .closeHours(dealerCenter.getCloseHours())
                 .build();
     }
 

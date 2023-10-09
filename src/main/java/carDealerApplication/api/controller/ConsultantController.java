@@ -47,7 +47,7 @@ public class ConsultantController {
                                                        @RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
                                                        @RequestParam(required = false, defaultValue = "1") int page,
                                                        @RequestParam(required = false, defaultValue = "1") int size,
-                                                       @RequestParam(required = false, defaultValue = "hours") String sortOrder) {
+                                                       @RequestParam(required = false, defaultValue = "openHours") String sortOrder) {
         jwtHandlerUtil.validateJwtForConsultant(jwtToken);
         return dealerCenterService.fetchAllDealersByCountry(country, PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }

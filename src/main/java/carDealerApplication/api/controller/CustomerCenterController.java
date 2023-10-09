@@ -4,7 +4,6 @@ import carDealerApplication.api.dto.CarDTO;
 import carDealerApplication.api.dto.DealerCenterDTO;
 import carDealerApplication.service.CarService;
 import carDealerApplication.service.DealerCenterService;
-import carDealerApplication.util.OpenOrClosedDealerCenterUtility;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -18,7 +17,6 @@ import java.util.List;
 public class CustomerCenterController {
     private final DealerCenterService dealerCenterService;
     private final CarService carService;
-    private final OpenOrClosedDealerCenterUtility openOrClosedDealerCenterUtility;
 
     @GetMapping("car")
     public List<CarDTO> fetchCarsList(@RequestParam(required = false, defaultValue = "1") int page,
@@ -48,7 +46,6 @@ public class CustomerCenterController {
                                                        @RequestParam(required = false, defaultValue = "1") int page,
                                                        @RequestParam(required = false, defaultValue = "1") int size,
                                                        @RequestParam(required = false, defaultValue = "hours") String sortOrder) {
-        openOrClosedDealerCenterUtility.isOpenSetter();
         return dealerCenterService.fetchOpenedDealersByCountry(country, PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 
@@ -57,7 +54,6 @@ public class CustomerCenterController {
                                                     @RequestParam(required = false, defaultValue = "1") int page,
                                                     @RequestParam(required = false, defaultValue = "1") int size,
                                                     @RequestParam(required = false, defaultValue = "hours") String sortOrder) {
-        openOrClosedDealerCenterUtility.isOpenSetter();
         return dealerCenterService.fetchOpenedDealersByCity(city, PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
 }

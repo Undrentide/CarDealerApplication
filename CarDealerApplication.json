@@ -15,7 +15,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/dealer_center/car",
+							"raw": "http://localhost:8080/dealer_center/car?size=5&page=0&sortOrder=price",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -24,6 +24,20 @@
 							"path": [
 								"dealer_center",
 								"car"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "sortOrder",
+									"value": "price"
+								}
 							]
 						}
 					},
@@ -75,7 +89,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/dealer_center/find_my_dealer/country/Japan",
+							"raw": "http://localhost:8080/dealer_center/find_my_dealer/country/Japan?size=5&page=0&sortOrder=openHours",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -86,6 +100,20 @@
 								"find_my_dealer",
 								"country",
 								"Japan"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "sortOrder",
+									"value": "openHours"
+								}
 							]
 						}
 					},
@@ -97,7 +125,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/dealer_center/find_my_dealer/city/Wakkanai",
+							"raw": "http://localhost:8080/dealer_center/find_my_dealer/city/Wakkanai?size=5&page=0&sortOrder=openHours",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -108,6 +136,20 @@
 								"find_my_dealer",
 								"city",
 								"Wakkanai"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "sortOrder",
+									"value": "openHours"
+								}
 							]
 						}
 					},
@@ -155,7 +197,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGFkbWluIiwiaWF0IjoxNjk0NzE5ODAzfQ.hXWf3hBsZzUalSnSlLEPOS0-Q_o1vdyhjnGALbv7LPc",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTUzMTgyMDUsImV4cCI6MTY5NTMxOTIwNX0.-FE40bbrs_YpQFqgtsuexJiB_4U5gEafB8oNLyhUBJU",
 									"type": "string"
 								}
 							]
@@ -163,7 +205,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/consultant/available_car",
+							"raw": "http://localhost:8080/consultant/available_car?size=5&page=0&sortOrder=price",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -172,6 +214,20 @@
 							"path": [
 								"consultant",
 								"available_car"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "sortOrder",
+									"value": "price"
+								}
 							]
 						}
 					},
@@ -185,7 +241,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTUzMTgyMDUsImV4cCI6MTY5NTMxOTIwNX0.-FE40bbrs_YpQFqgtsuexJiB_4U5gEafB8oNLyhUBJU",
 									"type": "string"
 								}
 							]
@@ -193,7 +249,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/consultant/unavailable_car",
+							"raw": "http://localhost:8080/consultant/unavailable_car?size=5&page=0&sortOrder=price",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -202,6 +258,20 @@
 							"path": [
 								"consultant",
 								"unavailable_car"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "sortOrder",
+									"value": "price"
+								}
 							]
 						}
 					},
@@ -215,7 +285,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTUzMjU0ODMsImV4cCI6MTY5NTMyNjQ4M30.Ej1f9xLkf05KPM2xIzRh0IyqxlhqQ_yZcdmNGeJFfoA",
 									"type": "string"
 								}
 							]
@@ -223,7 +293,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/consultant/all_dealers/country/Japan",
+							"raw": "http://localhost:8080/consultant/all_dealers/country/Japan?size=5&page=0&sortOrder=openHours",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -234,20 +304,34 @@
 								"all_dealers",
 								"country",
 								"Japan"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "sortOrder",
+									"value": "openHours"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Dealer Centers for specified City",
+					"name": "All Dealer Centers for specified City",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTUzMjU0ODMsImV4cCI6MTY5NTMyNjQ4M30.Ej1f9xLkf05KPM2xIzRh0IyqxlhqQ_yZcdmNGeJFfoA",
 									"type": "string"
 								}
 							]
@@ -255,7 +339,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/consultant/all_dealers/city/Wakkanai",
+							"raw": "http://localhost:8080/consultant/all_dealers/city/Wakkanai?size=5&page=0&sortOrder=openHours",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -266,6 +350,20 @@
 								"all_dealers",
 								"city",
 								"Wakkanai"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "sortOrder",
+									"value": "openHours"
+								}
 							]
 						}
 					},
@@ -279,7 +377,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTUyMjc4ODAsImV4cCI6MTY5NTIyODg4MH0.TXOrehGAt_3KDFYaVHDlWxil6XcoDNByHMGaKpeet8M",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTUzMTgyMDUsImV4cCI6MTY5NTMxOTIwNX0.-FE40bbrs_YpQFqgtsuexJiB_4U5gEafB8oNLyhUBJU",
 									"type": "string"
 								}
 							]
@@ -287,7 +385,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/consultant/special_offer/Japan",
+							"raw": "http://localhost:8080/consultant/special_offer/Japan?size=5&page=0&sortOrder=city",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -297,6 +395,20 @@
 								"consultant",
 								"special_offer",
 								"Japan"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "sortOrder",
+									"value": "city"
+								}
 							]
 						}
 					},
@@ -318,7 +430,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGFkbWluIiwiaWF0IjoxNjk1MjE4NzIxLCJleHAiOjE2OTUyMTk3MjF9.HvrIm_mah6kH_MjrGgcwjTPFWTPwc8AJEuDt7t7EMwA",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGFkbWluIiwiaWF0IjoxNjk1MzE2NTQ5LCJleHAiOjE2OTUzMTc1NDl9.o4J6T4T4TXxCtQYbfbhPnylrYYqo_--I9vG2SM5FDuw",
 											"type": "string"
 										}
 									]
@@ -326,7 +438,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/administrator/car",
+									"raw": "http://localhost:8080/administrator/car?size=5&page=0&sortOrder=price",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -335,6 +447,20 @@
 									"path": [
 										"administrator",
 										"car"
+									],
+									"query": [
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "sortOrder",
+											"value": "price"
+										}
 									]
 								}
 							},
@@ -348,7 +474,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGFkbWluIiwiaWF0IjoxNjk1MzE2NTQ5LCJleHAiOjE2OTUzMTc1NDl9.o4J6T4T4TXxCtQYbfbhPnylrYYqo_--I9vG2SM5FDuw",
 											"type": "string"
 										}
 									]
@@ -356,7 +482,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/administrator/dealer_center",
+									"raw": "http://localhost:8080/administrator/dealer_center?size=5&page=0&sortOrder=openHours",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -365,6 +491,20 @@
 									"path": [
 										"administrator",
 										"dealer_center"
+									],
+									"query": [
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "sortOrder",
+											"value": "openHours"
+										}
 									]
 								}
 							},
@@ -378,7 +518,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGFkbWluIiwiaWF0IjoxNjk1MjE4OTgyLCJleHAiOjE2OTUyMTk5ODJ9.QYPzfAwljGiU-RDq8jYKie7ZVb2FoA_trinBoIViUWg",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGFkbWluIiwiaWF0IjoxNjk1MzE2NzA4LCJleHAiOjE2OTUzMTc3MDh9.vw8_AIUPwTgo_4rDQ5z5_Y3SocBoDaAdE8SjEOpCa6c",
 											"type": "string"
 										}
 									]
@@ -386,7 +526,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/administrator/manufacturer",
+									"raw": "http://localhost:8080/administrator/manufacturer?size=5&page=0&sortOrder=originationYear",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -395,6 +535,20 @@
 									"path": [
 										"administrator",
 										"manufacturer"
+									],
+									"query": [
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "sortOrder",
+											"value": "originationYear"
+										}
 									]
 								}
 							},
@@ -408,7 +562,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGFkbWluIiwiaWF0IjoxNjk1MzE2NzA4LCJleHAiOjE2OTUzMTc3MDh9.vw8_AIUPwTgo_4rDQ5z5_Y3SocBoDaAdE8SjEOpCa6c",
 											"type": "string"
 										}
 									]
@@ -416,7 +570,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/administrator/consultant",
+									"raw": "http://localhost:8080/administrator/consultant?size=5&page=0&sortOrder=id",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -425,6 +579,20 @@
 									"path": [
 										"administrator",
 										"consultant"
+									],
+									"query": [
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "sortOrder",
+											"value": "id"
+										}
 									]
 								}
 							},
@@ -438,7 +606,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGFkbWluIiwiaWF0IjoxNjk1MzE2NzA4LCJleHAiOjE2OTUzMTc3MDh9.vw8_AIUPwTgo_4rDQ5z5_Y3SocBoDaAdE8SjEOpCa6c",
 											"type": "string"
 										}
 									]
@@ -446,7 +614,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/administrator/administrator",
+									"raw": "http://localhost:8080/administrator/administrator?size=5&page=0&sortOrder=id",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -455,6 +623,20 @@
 									"path": [
 										"administrator",
 										"administrator"
+									],
+									"query": [
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "sortOrder",
+											"value": "id"
+										}
 									]
 								}
 							},
@@ -468,7 +650,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGNvbnMiLCJpYXQiOjE2OTQ3MTc1NDh9.2p1wNkexc9hV3eFyMwpI1EMlQ5KlZfxs6dfxIAS_zQs",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaXJzdGFkbWluIiwiaWF0IjoxNjk1MzE2NzA4LCJleHAiOjE2OTUzMTc3MDh9.vw8_AIUPwTgo_4rDQ5z5_Y3SocBoDaAdE8SjEOpCa6c",
 											"type": "string"
 										}
 									]
@@ -476,7 +658,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/administrator/special_offer",
+									"raw": "http://localhost:8080/administrator/special_offer?size=5&page=0&sortOrder=amount",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -485,6 +667,20 @@
 									"path": [
 										"administrator",
 										"special_offer"
+									],
+									"query": [
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "sortOrder",
+											"value": "amount"
+										}
 									]
 								}
 							},

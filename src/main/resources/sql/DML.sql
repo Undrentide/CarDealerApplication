@@ -26,12 +26,12 @@ VALUES ('Consultant', 'First', 12468, 'firstcons', 'conspass1', 750.0, 1),
        ('Consultant', 'Ninth', 047778, 'ninthcons', 'conspass1', 970.0, 3),
        ('Consultant', 'Zeroth', 02438, 'zerothcons', 'conspass1', 960.0, 3);
 
-INSERT INTO dealer(location_id, hours)
-VALUES (1, '08:00 - 20:00'),
-       (2, '09:00 - 20:00'),
-       (3, '08:30 - 20:30'),
-       (4, '10:00 - 19:00'),
-       (5, '10:00 - 18:00');
+INSERT INTO dealer(location_id, open_hours, close_hours)
+VALUES (1, '08:00:00', '20:00:00'),
+       (2, '09:00:00', '20:00:00'),
+       (3, '08:30:00', '20:30:00'),
+       (4, '10:00:00', '19:00:00'),
+       (5, '10:00:00', '18:00:00');
 
 INSERT INTO offer(amount, description)
 VALUES (15, 'Limited-time promo offer!'),

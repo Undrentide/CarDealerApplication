@@ -25,7 +25,7 @@ public class AdministratorApiValidator {
     }
 
     public void validateDealerCenter(DealerCenter dealerCenter) {
-        if (dealerCenter.getLocation() == null || dealerCenter.getHours() == null ||
+        if (dealerCenter.getLocation() == null || dealerCenter.getOpenHours() == null || dealerCenter.getCloseHours() == null ||
                 dealerCenter.getConsultantList() == null || dealerCenter.getCarList() == null) {
             throw new IllegalArgumentException("Location, working hours, consultant list and car list - shouldn't be empty");
         }

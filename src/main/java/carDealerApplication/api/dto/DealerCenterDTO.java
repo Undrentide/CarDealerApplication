@@ -2,8 +2,11 @@ package carDealerApplication.api.dto;
 
 import lombok.Builder;
 
+import java.time.LocalTime;
+
 @Builder
 public class DealerCenterDTO {
     public LocationDTO locationDTO;
-    public String hours;
+    public LocalTime openHours;
+    public LocalTime closeHours;
 }

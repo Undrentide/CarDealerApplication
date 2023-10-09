@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class DealerCenterServiceImpl implements DealerCenterService {
     public List<DealerCenterDTO> fetchOpenedDealersByCountry(String country, PageRequest pageRequest) {
         List<DealerCenterDTO> dealerCenterDTOList = new ArrayList<>();
         for (DealerCenter dealerCenter : dealerCenterRepository.findDealerCentersByLocationCountry(country)) {
-            if (dealerCenter.getIsOpen()) {
+            if (dealerCenter.getOpenHours().isAfter(LocalTime.now()) && dealerCenter.getCloseHours().isBefore(LocalTime.now())) {
                 dealerCenterDTOList.add(dealerCenterDTOConverter.convertToDTO(dealerCenter));
             }
             if (dealerCenterDTOList.isEmpty()) {
@@ -59,7 +60,7 @@ public class DealerCenterServiceImpl implements DealerCenterService {
     public List<DealerCenterDTO> fetchOpenedDealersByCity(String city, PageRequest pageRequest) {
         List<DealerCenterDTO> dealerCenterDTOList = new ArrayList<>();
         for (DealerCenter dealerCenter : dealerCenterRepository.findDealerCentersByLocationCity(city)) {
-            if (dealerCenter.getIsOpen()) {
+            if (dealerCenter.getOpenHours().isAfter(LocalTime.now()) && dealerCenter.getCloseHours().isBefore(LocalTime.now())) {
                 dealerCenterDTOList.add(dealerCenterDTOConverter.convertToDTO(dealerCenter));
             }
             if (dealerCenterDTOList.isEmpty()) {
@@ -69,7 +70,7 @@ public class DealerCenterServiceImpl implements DealerCenterService {
         if (dealerCenterDTOList.isEmpty()) {
             throw new EntityNotFoundException("No dealer centers found for this city");
         }
-        return dealerCenterDTOList;
+        return null;
     }
 
     @Override

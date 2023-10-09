@@ -41,7 +41,7 @@ public class AdministratorController {
     public List<DealerCenter> fetchDealerCentersList(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwtToken,
                                                      @RequestParam(required = false, defaultValue = "1") int page,
                                                      @RequestParam(required = false, defaultValue = "1") int size,
-                                                     @RequestParam(required = false, defaultValue = "hours") String sortOrder) {
+                                                     @RequestParam(required = false, defaultValue = "openHours") String sortOrder) {
         jwtHandlerUtil.validateJwtForAdministrator(jwtToken);
         return dealerCenterService.fetchEntityList(PageRequest.of(page, size, Sort.by(sortOrder).ascending()));
     }
