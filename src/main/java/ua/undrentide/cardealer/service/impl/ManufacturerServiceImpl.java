@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,7 +22,7 @@ public class ManufacturerServiceImpl implements ManufacturerService {
 
     @Override
     public List<Manufacturer> fetchEntityList(PageRequest pageRequest) {
-        return new ArrayList<>(manufacturerRepository.findAll(pageRequest).getContent());
+        return manufacturerRepository.findAll(pageRequest).getContent();
     }
 
     @Override

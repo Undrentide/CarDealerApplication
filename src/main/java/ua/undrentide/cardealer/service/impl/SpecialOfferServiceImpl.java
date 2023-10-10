@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,7 +24,7 @@ public class SpecialOfferServiceImpl implements SpecialOfferService {
 
     @Override
     public List<SpecialOffer> fetchEntityList(PageRequest pageRequest) {
-        return new ArrayList<>(specialOfferRepository.findAll(pageRequest).getContent());
+        return specialOfferRepository.findAll(pageRequest).getContent();
     }
 
     @Override
@@ -39,10 +38,11 @@ public class SpecialOfferServiceImpl implements SpecialOfferService {
 
     @Override
     public List<SpecialOffer> fetchSpecialOffersByCountry(String country, PageRequest pageRequest) {
-        List<SpecialOffer> specialOfferList = new ArrayList<>(specialOfferRepository.findSpecialOfferByCountriesIn(locationRepository.getLocationsByCountry(country, pageRequest)));
-        if (specialOfferList.isEmpty()) {
+        List<SpecialOffer> specialOfferByCountriesInList = specialOfferRepository
+                .findSpecialOfferByCountriesIn(locationRepository.getLocationsByCountry(country, pageRequest));
+        if (specialOfferByCountriesInList.isEmpty()) {
             throw new EntityNotFoundException("Special offers for this country are not available");
         }
-        return specialOfferList;
+        return specialOfferByCountriesInList;
     }
 }

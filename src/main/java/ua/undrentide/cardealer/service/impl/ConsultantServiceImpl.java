@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,8 +25,8 @@ public class ConsultantServiceImpl implements ConsultantService {
 
     @Override
     public List<ConsultantDTO> fetchEntityList(PageRequest pageRequest) {
-        return new ArrayList<>(consultantDTOConverter.convertAllToDto(consultantRepository
-                .findAll(pageRequest).getContent()));
+        return consultantDTOConverter.convertAllToDto(consultantRepository
+                .findAll(pageRequest).getContent());
     }
 
     @Override

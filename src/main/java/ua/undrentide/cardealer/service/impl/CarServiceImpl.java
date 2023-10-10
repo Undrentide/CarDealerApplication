@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -40,16 +39,17 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> fetchAvailableCars(PageRequest pageRequest) {
-        return new ArrayList<>(carRepository.findCarsByIsAvailable(true, pageRequest));
+        return carRepository.findCarsByIsAvailable(true, pageRequest);
     }
 
     @Override
     public List<Car> fetchUnavailableCars(PageRequest pageRequest) {
-        return new ArrayList<>(carRepository.findCarsByIsAvailable(false, pageRequest));
+        return carRepository.findCarsByIsAvailable(false, pageRequest);
     }
 
     @Override
     public List<CarDTO> limitedFetchAvailableCars(PageRequest pageRequest) {
-        return new ArrayList<>(carDTOConverter.convertAllToDto(carRepository.findCarsByIsAvailable(true, pageRequest)));
+        return carDTOConverter.convertAllToDto(carRepository
+                .findCarsByIsAvailable(true, pageRequest));
     }
 }

@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,7 +25,8 @@ public class AdministrationServiceImpl implements AdministratorService {
 
     @Override
     public List<AdministratorDTO> fetchEntityList(PageRequest pageRequest) {
-        return new ArrayList<>(administratorDTOConverter.convertAllToDto(administratorRepository.findAll(pageRequest).getContent()));
+        return administratorDTOConverter.convertAllToDto(administratorRepository
+                .findAll(pageRequest).getContent());
     }
 
     @Override

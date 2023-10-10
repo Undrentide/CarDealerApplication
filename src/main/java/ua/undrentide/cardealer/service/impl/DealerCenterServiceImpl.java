@@ -27,7 +27,7 @@ public class DealerCenterServiceImpl implements DealerCenterService {
 
     @Override
     public List<DealerCenter> fetchEntityList(PageRequest pageRequest) {
-        return new ArrayList<>(dealerCenterRepository.findAll(pageRequest).getContent());
+        return dealerCenterRepository.findAll(pageRequest).getContent();
     }
 
     @Override
